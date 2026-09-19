@@ -1,53 +1,108 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Skoruba.IdentityServer4.Admin.Api.Helpers;
 using Skoruba.IdentityServer4.Admin.Api.Middlewares;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Shared.DbContexts;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Shared.Entities.Identity;
 
-namespace Skoruba.IdentityServer4.Admin.Api.Configuration.Test
+namespace Skoruba.IdentityServer4.Admin.Api.Configuration.Test;
+
+public class StartupTest
 {
-    public class StartupTest : Startup
+    public StartupTest(IWebHostEnvironment env, IConfiguration configuration)
     {
-        public StartupTest(IWebHostEnvironment env, IConfiguration configuration) : base(env, configuration)
-        {
-        }
+        HostingEnvironment = env;
+        Configuration = configuration;
+    }
 
-        public override void RegisterDbContexts(IServiceCollection services)
-        {
-            services.RegisterDbContextsStaging<AdminIdentityDbContext, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext>();
-        }
+    public IConfiguration Configuration { get; }
 
-        public override void RegisterAuthentication(IServiceCollection services)
-        {
-            services
-                .AddIdentity<UserIdentity, UserIdentityRole>(options => Configuration.GetSection(nameof(IdentityOptions)).Bind(options))
-                .AddEntityFrameworkStores<AdminIdentityDbContext>()
-                .AddDefaultTokenProviders();
+    public IWebHostEnvironment HostingEnvironment { get; }
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddCookie(JwtBearerDefaults.AuthenticationScheme);
-        }
+    public void ConfigureServices(IServiceCollection services)
+    {
+        var adminApiConfiguration = Configuration.GetSection(nameof(AdminApiConfiguration)).Get<AdminApiConfiguration>();
+        services.AddSingleton(adminApiConfiguration);
 
-        public override void RegisterAuthorization(IServiceCollection services)
-        {
-            services.AddAuthorizationPolicies();
-        }
+        RegisterDbContexts(services);
+        services.AddDataProtection<IdentityServerDataProtectionDbContext>(Configuration);
+        services.AddScoped<ControllerExceptionFilterAttribute>();
+        services.AddScoped<IApiErrorResources, ApiErrorResources>();
+        RegisterAuthorization(services);
 
-        public override void UseAuthentication(IApplicationBuilder app)
+        var profileTypes = new HashSet<Type>
         {
-            app.UseAuthentication();
-            app.UseMiddleware<AuthenticatedTestRequestMiddleware>();
-        }
+            typeof(IdentityMapperProfile<IdentityRoleDto, IdentityUserRolesDto, string, IdentityUserClaimsDto,
+                IdentityUserClaimDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
+                IdentityRoleClaimDto, IdentityRoleClaimsDto>)
+        };
+
+        services.AddAdminAspNetIdentityServices<AdminIdentityDbContext, IdentityServerPersistedGrantDbContext,
+            IdentityUserDto, IdentityRoleDto, UserIdentity, UserIdentityRole, string, UserIdentityUserClaim,
+            UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+            IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto, IdentityUserClaimsDto, IdentityUserProviderDto,
+            IdentityUserProvidersDto, IdentityUserChangePasswordDto, IdentityRoleClaimsDto, IdentityUserClaimDto,
+            IdentityRoleClaimDto>(profileTypes);
+
+        RegisterAuthentication(services);
+        services.AddAdminServices<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext>();
+        services.AddMvcServices<IdentityUserDto, IdentityRoleDto, UserIdentity, UserIdentityRole, string,
+            UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim,
+            UserIdentityUserToken, IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
+            IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
+            IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>();
+        services.AddAuditEventLogging<AdminAuditLogDbContext, AuditLog>(Configuration);
+    }
+
+    public void RegisterDbContexts(IServiceCollection services)
+    {
+        services.RegisterDbContextsStaging<AdminIdentityDbContext, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext>();
+    }
+
+    public void RegisterAuthentication(IServiceCollection services)
+    {
+        services
+            .AddIdentity<UserIdentity, UserIdentityRole>(options => Configuration.GetSection(nameof(IdentityOptions)).Bind(options))
+            .AddEntityFrameworkStores<AdminIdentityDbContext>()
+            .AddDefaultTokenProviders();
+
+        services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultForbidScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
+    }
+
+    public void RegisterAuthorization(IServiceCollection services)
+    {
+        services.AddAuthorizationPolicies();
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment _, ILoggerFactory _1)
+    {
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseMiddleware<AuthenticatedTestRequestMiddleware>();
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+    }
+
+    public void UseAuthentication(IApplicationBuilder app)
+    {
+        app.UseAuthentication();
+        app.UseMiddleware<AuthenticatedTestRequestMiddleware>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Skoruba.IdentityServer4.Admin.Api.Mappers
 {
@@ -6,7 +7,7 @@ namespace Skoruba.IdentityServer4.Admin.Api.Mappers
     {
         static ApiResourceApiMappers()
         {
-            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<ApiResourceApiMapperProfile>())
+            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<ApiResourceApiMapperProfile>(), NullLoggerFactory.Instance)
                 .CreateMapper();
         }
 

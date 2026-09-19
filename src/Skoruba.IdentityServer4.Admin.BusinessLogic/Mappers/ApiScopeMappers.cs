@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using IdentityServer4.EntityFramework.Entities;
+using IdentityServer10.EntityFramework.Entities;
+using Microsoft.Extensions.Logging.Abstractions;
 using Skoruba.IdentityServer4.Admin.BusinessLogic.Dtos.Configuration;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Extensions.Common;
 
@@ -9,7 +10,7 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Mappers
     {
         static ApiScopeMappers()
         {
-            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<ApiScopeMapperProfile>())
+            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<ApiScopeMapperProfile>(), NullLoggerFactory.Instance)
                 .CreateMapper();
         }
 

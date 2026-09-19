@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.KeyVault.Models;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Azure.Core;
+using Azure.Identity;
+using Azure.Security.KeyVault.Certificates;
+using Azure.Security.KeyVault.Secrets;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
 
 namespace Skoruba.IdentityServer4.Shared.Configuration.Services
@@ -37,18 +37,18 @@ namespace Skoruba.IdentityServer4.Shared.Configuration.Services
         {
             (X509Certificate2 ActiveCertificate, X509Certificate2 SecondaryCertificate) certs = (null, null);
 
-            var keyVaultClient = BuildKeyVaultClient();
+            var (certificateClient, secretClient) = BuildKeyVaultClients();
 
-            var certificateItems = await GetAllEnabledCertificateVersionsAsync(keyVaultClient);
+            var certificateItems = await GetAllEnabledCertificateVersionsAsync(certificateClient);
             var item = certificateItems.FirstOrDefault();
             if (item != null)
             {
-                certs.ActiveCertificate = await GetCertificateAsync(item.Identifier.Identifier, keyVaultClient);
+                certs.ActiveCertificate = await GetCertificateAsync(item, secretClient);
             }
 
             if (certificateItems.Count > 1)
             {
-                certs.SecondaryCertificate = await GetCertificateAsync(certificateItems[1].Identifier.Identifier, keyVaultClient);
+                certs.SecondaryCertificate = await GetCertificateAsync(certificateItems[1], secretClient);
             }
 
             return certs;
@@ -58,46 +58,42 @@ namespace Skoruba.IdentityServer4.Shared.Configuration.Services
         /// Build KeyVaultClient according to authentication method
         /// </summary>
         /// <returns></returns>
-        public IKeyVaultClient BuildKeyVaultClient()
+        private (CertificateClient CertificateClient, SecretClient SecretClient) BuildKeyVaultClients()
         {
-            IKeyVaultClient keyVaultClient;
+            TokenCredential credential = _azureKeyVaultConfiguration.UseClientCredentials
+                ? new ClientSecretCredential(
+                    _azureKeyVaultConfiguration.TenantId,
+                    _azureKeyVaultConfiguration.ClientId,
+                    _azureKeyVaultConfiguration.ClientSecret)
+                : new DefaultAzureCredential();
 
-            if (_azureKeyVaultConfiguration.UseClientCredentials)
+            var keyVaultUri = new Uri(_azureKeyVaultConfiguration.AzureKeyVaultEndpoint);
+            return (new CertificateClient(keyVaultUri, credential), new SecretClient(keyVaultUri, credential));
+        }
+
+        private async Task<List<CertificateProperties>> GetAllEnabledCertificateVersionsAsync(CertificateClient certificateClient)
+        {
+            var certificateVersions = new List<CertificateProperties>();
+
+            await foreach (var certificateVersion in certificateClient.GetPropertiesOfCertificateVersionsAsync(
+                               _azureKeyVaultConfiguration.IdentityServerCertificateName))
             {
-                keyVaultClient = new KeyVaultClient(async (authority, resource, scope) =>
+                if (certificateVersion.Enabled == true)
                 {
-                    var adCredential = new ClientCredential(_azureKeyVaultConfiguration.ClientId, _azureKeyVaultConfiguration.ClientSecret);
-                    var authenticationContext = new AuthenticationContext(authority, null);
-                    return (await authenticationContext.AcquireTokenAsync(resource, adCredential)).AccessToken;
-                });
-            }
-            else
-            {
-                var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+                    certificateVersions.Add(certificateVersion);
+                }
             }
 
-            return keyVaultClient;
+            return certificateVersions.OrderByDescending(certVersion => certVersion.CreatedOn).ToList();
         }
 
-        private async Task<List<CertificateItem>> GetAllEnabledCertificateVersionsAsync(IKeyVaultClient keyVaultClient)
+        private async Task<X509Certificate2> GetCertificateAsync(CertificateProperties certificate, SecretClient secretClient)
         {
-            // Get all the certificate versions (this will also get the current active version)
-            var certificateVersions = await keyVaultClient.GetCertificateVersionsAsync(_azureKeyVaultConfiguration.AzureKeyVaultEndpoint, _azureKeyVaultConfiguration.IdentityServerCertificateName);
-
-            // Find all enabled versions of the certificate and sort them by creation date in descending order 
-            return certificateVersions
-              .Where(certVersion => certVersion.Attributes.Enabled.HasValue && certVersion.Attributes.Enabled.Value)
-              .OrderByDescending(certVersion => certVersion.Attributes.Created)
-              .ToList();
-        }
-
-        private async Task<X509Certificate2> GetCertificateAsync(string identifier, IKeyVaultClient keyVaultClient)
-        {
-            var certificateVersionBundle = await keyVaultClient.GetCertificateAsync(identifier);
-            var certificatePrivateKeySecretBundle = await keyVaultClient.GetSecretAsync(certificateVersionBundle.SecretIdentifier.Identifier);
-            var privateKeyBytes = Convert.FromBase64String(certificatePrivateKeySecretBundle.Value);
-            var certificateWithPrivateKey = new X509Certificate2(privateKeyBytes, (string)null, X509KeyStorageFlags.MachineKeySet);
+            var certificatePrivateKeySecret = await secretClient.GetSecretAsync(
+                _azureKeyVaultConfiguration.IdentityServerCertificateName, certificate.Version);
+            var privateKeyBytes = Convert.FromBase64String(certificatePrivateKeySecret.Value.Value);
+            var certificateWithPrivateKey = X509CertificateLoader.LoadPkcs12(
+                privateKeyBytes, null, X509KeyStorageFlags.MachineKeySet);
 
             return certificateWithPrivateKey;
         }

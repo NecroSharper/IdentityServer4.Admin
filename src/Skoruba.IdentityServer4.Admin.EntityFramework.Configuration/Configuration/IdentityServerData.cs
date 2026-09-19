@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using IdentityServer4.Models;
+using IdentityServer10.Models;
 using Client = Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration.IdentityServer.Client;
 
 namespace Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration

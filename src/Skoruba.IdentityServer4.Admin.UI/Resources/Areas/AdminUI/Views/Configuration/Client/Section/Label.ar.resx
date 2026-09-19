@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbsoluteRefreshTokenLifetime_Info" xml:space="preserve">
+    <value>الحد الأقصى لعمر رمز التحديث بالثواني. القيمة الافتراضية هي 2,592,000 ثانية (30 يوماً).</value>
+  </data>
+  <data name="AbsoluteRefreshTokenLifetime_Label" xml:space="preserve">
+    <value>العمر الافتراضي المطلق لرمز التحديث</value>
+  </data>
+  <data name="AccessTokenLifetime_Info" xml:space="preserve">
+    <value>مدة الصلاحية من رمز الوصول في ثوانٍ (القيم الافتراضية إلى 3600 ثوانٍ / 1 hour)</value>
+  </data>
+  <data name="AccessTokenLifetime_Label" xml:space="preserve">
+    <value>رمز الوصول مدة الصلاحية</value>
+  </data>
+  <data name="AccessTokenTypes_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان ال رمز الوصول هو  reference رمز أو  self contained JWT رمز (القيم الافتراضية إلى Jwt).</value>
+  </data>
+  <data name="AccessTokenTypes_Label" xml:space="preserve">
+    <value>رمز الوصول النوع</value>
+  </data>
+  <data name="AllowAccessTokensViaBrowser_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان هذا العميل هو المسموح به إلى receive رمز الوصولs via ال المتصفح. هذا هو useful إلى harden flows الذي السماح multiple الاستجابة الأنواع (e.g. بواسطة disallowing  مختلط تدفق العميل الذي هو supposed إلى استخدم الرمز المعرّف_رمز إلى إضافة ال رمز الاستجابة النوع و thus leaking ال رمز إلى ال المتصفح.</value>
+  </data>
+  <data name="AllowAccessTokensViaBrowser_Label" xml:space="preserve">
+    <value>السماح رمز الوصول Via المتصفح</value>
+  </data>
+  <data name="AllowOfflineAccess_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان هذا العميل يمكن الطلب تحديث الرموز (يكون requesting ال offline_الوصول النطاق)</value>
+  </data>
+  <data name="AllowOfflineAccess_Label" xml:space="preserve">
+    <value>السماح Offline الوصول</value>
+  </data>
+  <data name="AllowPlainTextPkce_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان العملاء باستخدام PKCE يمكن استخدم  plain text الرمز challenge (ليس recommended - و الافتراضي إلى خطأ)</value>
+  </data>
+  <data name="AllowPlainTextPkce_Label" xml:space="preserve">
+    <value>السماح بـ PKCE للنص العادي</value>
+  </data>
+  <data name="AllowRememberConsent_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان المستخدم يمكن choose إلى store الموافقة decisions. القيم الافتراضية إلى صحيح.</value>
+  </data>
+  <data name="AllowRememberConsent_Label" xml:space="preserve">
+    <value>السماح بحفظ الموافقة</value>
+  </data>
+  <data name="AlwaysIncludeUserClaimsInIdToken_Info" xml:space="preserve">
+    <value>يحدد ما إذا كانت مطالبات المستخدم تُدرج دائمًا في رمز الهوية.</value>
+  </data>
+  <data name="AlwaysIncludeUserClaimsInIdToken_Label" xml:space="preserve">
+    <value>Always Include المستخدم المطالبات في IdToken</value>
+  </data>
+  <data name="AlwaysSendClientClaims_Info" xml:space="preserve">
+    <value>إذا تعيين, ال العميل المطالبات سيتم يكون أُرسل لـ every تدفق. إذا ليس, فقط لـ العميل بيانات الاعتماد تدفق (الافتراضي هو خطأ)</value>
+  </data>
+  <data name="AlwaysSendClientClaims_Label" xml:space="preserve">
+    <value>Always إرسال العميل المطالبات</value>
+  </data>
+  <data name="AuthorizationCodeLifetime_Info" xml:space="preserve">
+    <value>مدة الصلاحية من التفويض الرمز في ثوانٍ (القيم الافتراضية إلى 300 ثوانٍ / 5 دقائق)</value>
+  </data>
+  <data name="AuthorizationCodeLifetime_Label" xml:space="preserve">
+    <value>التفويض الرمز مدة الصلاحية</value>
+  </data>
+  <data name="ClientId_Info" xml:space="preserve">
+    <value>فريد المعرّف من ال العميل</value>
+  </data>
+  <data name="ClientId_Label" xml:space="preserve">
+    <value>ClientId</value>
+  </data>
+  <data name="ClientName_Info" xml:space="preserve">
+    <value>العميل اسم العرض (المستخدم لـ logging و الموافقة الشاشة)</value>
+  </data>
+  <data name="ClientName_Label" xml:space="preserve">
+    <value>العميل الاسم</value>
+  </data>
+  <data name="ClientUri_Info" xml:space="preserve">
+    <value>معرّف الموارد الموحد (URI) لمزيد من المعلومات حول العميل (يُستخدم في شاشة الموافقة)</value>
+  </data>
+  <data name="ClientUri_Label" xml:space="preserve">
+    <value>العميل Uri</value>
+  </data>
+  <data name="Enabled_Info" xml:space="preserve">
+    <value>يحدد إذا العميل هو ممكّن. القيم الافتراضية إلى صحيح.</value>
+  </data>
+  <data name="Enabled_Label" xml:space="preserve">
+    <value>ممكّن</value>
+  </data>
+  <data name="EnableLocalLogin_Info" xml:space="preserve">
+    <value>يحدد إذا هذا العميل يمكن استخدم محلي accounts, أو خارجي IdPs فقط. القيم الافتراضية إلى صحيح.</value>
+  </data>
+  <data name="EnableLocalLogin_Label" xml:space="preserve">
+    <value>تمكين محلي تسجيل الدخول</value>
+  </data>
+  <data name="IdentityTokenLifetime_Info" xml:space="preserve">
+    <value>مدة الصلاحية إلى الهوية رمز في ثوانٍ (القيم الافتراضية إلى 300 ثوانٍ / 5 دقائق)</value>
+  </data>
+  <data name="IdentityTokenLifetime_Label" xml:space="preserve">
+    <value>الهوية رمز مدة الصلاحية</value>
+  </data>
+  <data name="IncludeJwtId_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان JWT رمز الوصولs ينبغي لديه  embedded فريد المعرّف (via ال jti مطالبة).</value>
+  </data>
+  <data name="IncludeJwtId_Label" xml:space="preserve">
+    <value>تضمين معرف JWT</value>
+  </data>
+  <data name="LogoUri_Info" xml:space="preserve">
+    <value>URI إلى العميل logo (المستخدم على الموافقة الشاشة)</value>
+  </data>
+  <data name="LogoUri_Label" xml:space="preserve">
+    <value>شعار URI</value>
+  </data>
+  <data name="RefreshTokenExpiration_Info" xml:space="preserve">
+    <value>Absolute ال تحديث رمز سيتم expire على  fixed point في time (المحدد بواسطة ال AbsoluteRefreshTokenLifetime)
+
+انزلاقي عندما التحديث ال رمز, ال مدة الصلاحية من ال تحديث رمز سيتم يكون renewed (بواسطة ال amount المحدد في SlidingRefreshTokenLifetime). ال مدة الصلاحية سيتم ليس exceed AbsoluteRefreshTokenLifetime.</value>
+  </data>
+  <data name="RefreshTokenExpiration_Label" xml:space="preserve">
+    <value>تحديث رمز Expiration</value>
+  </data>
+  <data name="RefreshTokenUsage.Info" xml:space="preserve">
+    <value>ReUse ال تحديث رمز المعرّف سيتم stay ال same عندما التحديث الرموز
+
+OneTime ال تحديث رمز المعرّف سيتم يكون تم تحديثه عندما التحديث الرموز</value>
+  </data>
+  <data name="RefreshTokenUsage.Label" xml:space="preserve">
+    <value>تحديث رمز Usage</value>
+  </data>
+  <data name="RefreshTokenUsage_Info" xml:space="preserve">
+    <value>ReUse ال تحديث رمز المعرّف سيتم stay ال same عندما التحديث الرموز
+
+OneTime ال تحديث رمز المعرّف سيتم يكون تم تحديثه عندما التحديث الرموز</value>
+  </data>
+  <data name="RefreshTokenUsage_Label" xml:space="preserve">
+    <value>تحديث رمز Usage</value>
+  </data>
+  <data name="RequireClientSecret_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان هذا العميل needs  سر إلى الطلب الرموز من ال رمز نقطة النهاية (القيم الافتراضية إلى صحيح)</value>
+  </data>
+  <data name="RequireClientSecret_Label" xml:space="preserve">
+    <value>Require العميل سر</value>
+  </data>
+  <data name="RequireConsent_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان  الموافقة الشاشة هو مطلوب. القيم الافتراضية إلى صحيح.</value>
+  </data>
+  <data name="RequireConsent_Label" xml:space="preserve">
+    <value>Require الموافقة</value>
+  </data>
+  <data name="RequirePkce_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان العملاء باستخدام  التفويض الرمز قائم على منح النوع must إرسال  proof المفتاح</value>
+  </data>
+  <data name="RequirePkce_Label" xml:space="preserve">
+    <value>Require Pkce</value>
+  </data>
+  <data name="SlidingRefreshTokenLifetime_Info" xml:space="preserve">
+    <value>انزلاقي مدة الصلاحية من  تحديث رمز في ثوانٍ. القيم الافتراضية إلى 1296000 ثوانٍ / 15 days</value>
+  </data>
+  <data name="SlidingRefreshTokenLifetime_Label" xml:space="preserve">
+    <value>انزلاقي تحديث رمز مدة الصلاحية</value>
+  </data>
+  <data name="UpdateAccessTokenClaimsOnRefresh_Info" xml:space="preserve">
+    <value>Gets أو sets  القيمة indicating ما إذا كان ال رمز الوصول (و its المطالبات) ينبغي يكون تم تحديثه على  تحديث رمز الطلب.</value>
+  </data>
+  <data name="UpdateAccessTokenClaimsOnRefresh_Label" xml:space="preserve">
+    <value>تحديث رمز الوصول المطالبات على تحديث</value>
+  </data>
+  <data name="AllowedCorsOrigins_Info" xml:space="preserve">
+    <value>إذا المحدد, سيتم يكون المستخدم بواسطة ال الافتراضي CORS policy الخدمة implementations (في-Memory و EF) إلى build  CORS policy لـ JavaScript العملاء.</value>
+  </data>
+  <data name="AllowedCorsOrigins_Label" xml:space="preserve">
+    <value>المسموح به Cors Origins</value>
+  </data>
+  <data name="AllowedGrantTypes_Info" xml:space="preserve">
+    <value>يحدد ال منح الأنواع ال العميل هو المسموح به إلى استخدم. استخدم ال GrantTypes class لـ common combinations. قائمة من الافتراضي المنح: Implicit منح - (implicit), العميل بيانات الاعتماد منح - (العميل_بيانات الاعتماد), التفويض الرمز منح - (التفويض_الرمز), مختلط منح - (مختلط), مورد Owner كلمة المرور بيانات الاعتماد منح - (كلمة المرور)</value>
+  </data>
+  <data name="AllowedGrantTypes_Label" xml:space="preserve">
+    <value>المسموح به منح الأنواع</value>
+  </data>
+  <data name="AllowedScopes_Info" xml:space="preserve">
+    <value>بواسطة الافتراضي  العميل لديه لا الوصول إلى أي الموارد - specify ال المسموح به الموارد بواسطة adding ال corresponding النطاقات names</value>
+  </data>
+  <data name="AllowedScopes_Label" xml:space="preserve">
+    <value>المسموح به النطاقات</value>
+  </data>
+  <data name="Claims_Info" xml:space="preserve">
+    <value>Allows الإعدادات المطالبات لـ ال العميل (سيتم يكون مضمن في ال رمز الوصول).</value>
+  </data>
+  <data name="Claims_Label" xml:space="preserve">
+    <value>المطالبات</value>
+  </data>
+  <data name="ClientSecrets_Info" xml:space="preserve">
+    <value>قائمة من العميل الأسرار - بيانات الاعتماد إلى الوصول ال رمز نقطة النهاية.</value>
+  </data>
+  <data name="ClientSecrets_Label" xml:space="preserve">
+    <value>العميل الأسرار</value>
+  </data>
+  <data name="IdentityProviderRestrictions_Info" xml:space="preserve">
+    <value>يحدد which خارجي IdPs يمكن يكون المستخدم مع هذا العميل (إذا قائمة هو فارغ كل IdPs هي المسموح به). القيم الافتراضية إلى فارغ.</value>
+  </data>
+  <data name="IdentityProviderRestrictions_Label" xml:space="preserve">
+    <value>الهوية الموفر Restrictions</value>
+  </data>
+  <data name="PostLogoutRedirectUris_Info" xml:space="preserve">
+    <value>يحدد المسموح به عناوين URI إلى إعادة التوجيه إلى بعد تسجيل الخروج</value>
+  </data>
+  <data name="PostLogoutRedirectUris_Label" xml:space="preserve">
+    <value>عناوين إعادة التوجيه بعد تسجيل الخروج</value>
+  </data>
+  <data name="RedirectUris_Info" xml:space="preserve">
+    <value>يحدد ال المسموح به عناوين URI إلى العودة الرموز أو التفويض الرموز إلى</value>
+  </data>
+  <data name="RedirectUris_Label" xml:space="preserve">
+    <value>Redirect Uris</value>
+  </data>
+  <data name="Type_Info" xml:space="preserve">
+    <value>نوع المطالبة.</value>
+  </data>
+  <data name="Type_Label" xml:space="preserve">
+    <value>مطالبة النوع</value>
+  </data>
+  <data name="Value_Info" xml:space="preserve">
+    <value>قيمة المطالبة.</value>
+  </data>
+  <data name="Value_Label" xml:space="preserve">
+    <value>مطالبة القيمة</value>
+  </data>
+  <data name="SecretType_Info" xml:space="preserve">
+    <value>نوع السر.</value>
+  </data>
+  <data name="SecretType_Label" xml:space="preserve">
+    <value>سر النوع</value>
+  </data>
+  <data name="SecretValue_Info" xml:space="preserve">
+    <value>قيمة السر.</value>
+  </data>
+  <data name="SecretValue_Label" xml:space="preserve">
+    <value>سر القيمة</value>
+  </data>
+  <data name="HashType_Info" xml:space="preserve">
+    <value>نوع التجزئة المستخدم للسر.</value>
+  </data>
+  <data name="HashType_Label" xml:space="preserve">
+    <value>نوع التجزئة</value>
+  </data>
+  <data name="RoleNormalizedName_Info" xml:space="preserve">
+    <value>ال Normalized الدور الاسم</value>
+  </data>
+  <data name="RoleNormalizedName_Label" xml:space="preserve">
+    <value>Normalized الاسم</value>
+  </data>
+  <data name="BackChannelLogoutSessionRequired_Info" xml:space="preserve">
+    <value>يحدد إذا ال المستخدم’s الجلسة المعرّف ينبغي يكون أُرسل في ال الطلب إلى ال BackChannelLogoutUri. القيم الافتراضية إلى صحيح.</value>
+  </data>
+  <data name="BackChannelLogoutSessionRequired_Label" xml:space="preserve">
+    <value>رجوع القناة تسجيل الخروج الجلسة مطلوب</value>
+  </data>
+  <data name="BackChannelLogoutUri_Info" xml:space="preserve">
+    <value>يحدد تسجيل الخروج URI at العميل لـ HTTP قائم على رجوع-القناة تسجيل الخروج. See ال OIDC رجوع-القناة spec لـ more التفاصيل.</value>
+  </data>
+  <data name="BackChannelLogoutUri_Label" xml:space="preserve">
+    <value>رجوع القناة تسجيل الخروج Uri</value>
+  </data>
+  <data name="ClientClaimsPrefix_Info" xml:space="preserve">
+    <value>إذا تعيين, ال prefix العميل مطالبة الأنواع سيتم يكون prefixed مع. القيم الافتراضية إلى العميل_. ال intent هو إلى make sure هم don’t accidentally collide مع المستخدم المطالبات.</value>
+  </data>
+  <data name="ClientClaimsPrefix_Label" xml:space="preserve">
+    <value>العميل المطالبات Prefix</value>
+  </data>
+  <data name="Description_Info" xml:space="preserve">
+    <value>العميل الوصف</value>
+  </data>
+  <data name="Description_Label" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="FrontChannelLogoutSessionRequired_Info" xml:space="preserve">
+    <value>يحدد إذا ال المستخدم’s الجلسة المعرّف ينبغي يكون أُرسل إلى ال FrontChannelLogoutUri. القيم الافتراضية إلى صحيح.</value>
+  </data>
+  <data name="FrontChannelLogoutSessionRequired_Label" xml:space="preserve">
+    <value>مطلوب جلسة تسجيل خروج عبر القناة الأمامية (Front Channel)</value>
+  </data>
+  <data name="FrontChannelLogoutUri_Info" xml:space="preserve">
+    <value>يحدد تسجيل الخروج URI at العميل لـ HTTP قائم على front-القناة تسجيل الخروج. See ال OIDC Front-القناة spec لـ more التفاصيل.</value>
+  </data>
+  <data name="FrontChannelLogoutUri_Label" xml:space="preserve">
+    <value>تسجيل الخروج من القناة الأمامية</value>
+  </data>
+  <data name="PairWiseSubjectSalt_Info" xml:space="preserve">
+    <value>Salt القيمة المستخدم في pair-wise subjectId generation لـ المستخدمون من هذا العميل.</value>
+  </data>
+  <data name="PairWiseSubjectSalt_Label" xml:space="preserve">
+    <value>Pair Wise Subject Salt</value>
+  </data>
+  <data name="Properties_Info" xml:space="preserve">
+    <value>القاموس إلى احتفظ أي مخصص العميل-specific القيم كما مطلوب.</value>
+  </data>
+  <data name="Properties_Label" xml:space="preserve">
+    <value>الخصائص</value>
+  </data>
+  <data name="PropertyKey_Info" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="PropertyKey_Label" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="PropertyValue_Info" xml:space="preserve">
+    <value>القيمة</value>
+  </data>
+  <data name="PropertyValue_Label" xml:space="preserve">
+    <value>القيمة</value>
+  </data>
+  <data name="ProtocolType_Info" xml:space="preserve">
+    <value>الخيار الافتراضي هو بروتوكول OpenID Connect.</value>
+  </data>
+  <data name="ProtocolType_Label" xml:space="preserve">
+    <value>نوع البروتوكول</value>
+  </data>
+  <data name="UserSsoLifetime_Info" xml:space="preserve">
+    <value>الحد الأقصى للمدة (بالثواني) منذ آخر مرة أجرى فيها المستخدم عملية المصادقة. القيمة الافتراضية هي null.</value>
+  </data>
+  <data name="UserSsoLifetime_Label" xml:space="preserve">
+    <value>المستخدم Sso مدة الصلاحية</value>
+  </data>
+  <data name="DeviceCodeLifetime_Info" xml:space="preserve">
+    <value>مدة الصلاحية إلى الجهاز الرمز في ثوانٍ (القيم الافتراضية إلى 300 ثوانٍ / 5 دقائق)</value>
+  </data>
+  <data name="DeviceCodeLifetime_Label" xml:space="preserve">
+    <value>الجهاز الرمز مدة الصلاحية</value>
+  </data>
+  <data name="UserCodeType_Info" xml:space="preserve">
+    <value>يحدد ال النوع من المستخدم الرمز إلى استخدم لـ ال العميل. Otherwise falls رجوع إلى الافتراضي.</value>
+  </data>
+  <data name="UserCodeType_Label" xml:space="preserve">
+    <value>المستخدم الرمز النوع</value>
+  </data>
+  <data name="Expiration_Info" xml:space="preserve">
+    <value>انتهاء</value>
+  </data>
+  <data name="Expiration_Label" xml:space="preserve">
+    <value>انتهاء</value>
+  </data>
+  <data name="SecretDescription_Info" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="SecretDescription_Label" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="RequireRequestObject_Label" xml:space="preserve">
+    <value>Require Request Object</value>
+  </data>
+  <data name="RequireRequestObject_Info" xml:space="preserve">
+    <value>يحدد ما إذا كان هذا العميل needs إلى wrap ال authorize الطلب parameters في  JWT (القيم الافتراضية إلى خطأ)</value>
+  </data>
+  <data name="SigningAlgorithms_Label" xml:space="preserve">
+    <value>المسموح به الهوية رمز التوقيع الخوارزميات</value>
+  </data>
+  <data name="SigningAlgorithms_Info" xml:space="preserve">
+    <value>قائمة من المسموح به التوقيع الخوارزميات لـ الهوية رمز. إذا فارغ, سيتم استخدم ال الخادم الافتراضي التوقيع algorithm.</value>
+  </data>
+</root>

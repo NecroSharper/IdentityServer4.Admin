@@ -1,13 +1,11 @@
 ﻿using System;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.DependencyInjection;
 using SendGrid;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Common;
@@ -87,17 +85,16 @@ namespace Skoruba.IdentityServer4.Shared.Configuration.Helpers
                 {
                     if (azureKeyVaultConfiguration.UseClientCredentials)
                     {
-                        configurationBuilder.AddAzureKeyVault(azureKeyVaultConfiguration.AzureKeyVaultEndpoint,
-                            azureKeyVaultConfiguration.ClientId, azureKeyVaultConfiguration.ClientSecret);
+                        configurationBuilder.AddAzureKeyVault(
+                            new Uri(azureKeyVaultConfiguration.AzureKeyVaultEndpoint),
+                            new ClientSecretCredential(azureKeyVaultConfiguration.TenantId,
+                                azureKeyVaultConfiguration.ClientId, azureKeyVaultConfiguration.ClientSecret));
                     }
                     else
                     {
-                        var keyVaultClient = new KeyVaultClient(
-                            new KeyVaultClient.AuthenticationCallback(new AzureServiceTokenProvider()
-                                .KeyVaultTokenCallback));
-
-                        configurationBuilder.AddAzureKeyVault(azureKeyVaultConfiguration.AzureKeyVaultEndpoint,
-                            keyVaultClient, new DefaultKeyVaultSecretManager());
+                        configurationBuilder.AddAzureKeyVault(
+                            new Uri(azureKeyVaultConfiguration.AzureKeyVaultEndpoint),
+                            new DefaultAzureCredential());
                     }
                 }
             }

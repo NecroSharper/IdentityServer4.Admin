@@ -2,7 +2,7 @@
 @using Skoruba.IdentityServer4.STS.Identity
 
 @{
-    var runtimeVersion = typeof(Startup)
+    var runtimeVersion = typeof(Program)
         .GetTypeInfo()
         .Assembly
         .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;

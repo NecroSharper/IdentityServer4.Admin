@@ -1,5 +1,5 @@
-﻿using IdentityServer4.EntityFramework.Entities;
-using IdentityServer4.EntityFramework.Interfaces;
+﻿using IdentityServer10.EntityFramework.Entities;
+using IdentityServer10.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces

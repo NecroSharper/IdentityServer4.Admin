@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbsoluteRefreshTokenLifetime_Info" xml:space="preserve">
+    <value>Masa pakai maksimum token penyegaran dalam hitungan detik. </value>
+  </data>
+  <data name="AbsoluteRefreshTokenLifetime_Label" xml:space="preserve">
+    <value>Token Penyegaran Mutlak Seumur Hidup</value>
+  </data>
+  <data name="AccessTokenLifetime_Info" xml:space="preserve">
+    <value>Token akses seumur hidup dalam hitungan detik (defaultnya adalah 3600 detik / 1 jam)</value>
+  </data>
+  <data name="AccessTokenLifetime_Label" xml:space="preserve">
+    <value>Akses Token Seumur Hidup</value>
+  </data>
+  <data name="AccessTokenTypes_Info" xml:space="preserve">
+    <value>Menentukan apakah token akses adalah token referensi atau token JWT mandiri (default pada Jwt).</value>
+  </data>
+  <data name="AccessTokenTypes_Label" xml:space="preserve">
+    <value>Akses Jenis Token</value>
+  </data>
+  <data name="AllowAccessTokensViaBrowser_Info" xml:space="preserve">
+    <value>Menentukan apakah klien ini diizinkan menerima token akses melalui browser. </value>
+  </data>
+  <data name="AllowAccessTokensViaBrowser_Label" xml:space="preserve">
+    <value>Izinkan Akses Token Melalui Browser</value>
+  </data>
+  <data name="AllowOfflineAccess_Info" xml:space="preserve">
+    <value>Menentukan apakah klien ini dapat meminta token penyegaran (meminta cakupan offline_access)</value>
+  </data>
+  <data name="AllowOfflineAccess_Label" xml:space="preserve">
+    <value>Izinkan Akses Offline</value>
+  </data>
+  <data name="AllowPlainTextPkce_Info" xml:space="preserve">
+    <value>Menentukan apakah klien yang menggunakan PKCE dapat menggunakan tantangan kode teks biasa (tidak disarankan - dan defaultnya adalah false)</value>
+  </data>
+  <data name="AllowPlainTextPkce_Label" xml:space="preserve">
+    <value>Izinkan Pkce Teks Biasa</value>
+  </data>
+  <data name="AllowRememberConsent_Info" xml:space="preserve">
+    <value>Menentukan apakah pengguna dapat memilih untuk menyimpan keputusan izin. </value>
+  </data>
+  <data name="AllowRememberConsent_Label" xml:space="preserve">
+    <value>Izinkan Ingat Persetujuan</value>
+  </data>
+  <data name="AlwaysIncludeUserClaimsInIdToken_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AlwaysIncludeUserClaimsInIdToken_Label" xml:space="preserve">
+    <value>Selalu Sertakan Klaim Pengguna Dalam IdToken</value>
+  </data>
+  <data name="AlwaysSendClientClaims_Info" xml:space="preserve">
+    <value>Jika disetel, klaim klien akan dikirim untuk setiap aliran. </value>
+  </data>
+  <data name="AlwaysSendClientClaims_Label" xml:space="preserve">
+    <value>Selalu Kirim Klaim Klien</value>
+  </data>
+  <data name="AuthorizationCodeLifetime_Info" xml:space="preserve">
+    <value>Masa pakai kode otorisasi dalam hitungan detik (defaultnya adalah 300 detik / 5 menit)</value>
+  </data>
+  <data name="AuthorizationCodeLifetime_Label" xml:space="preserve">
+    <value>Kode Otorisasi Seumur Hidup</value>
+  </data>
+  <data name="ClientId_Info" xml:space="preserve">
+    <value>ID unik klien</value>
+  </data>
+  <data name="ClientId_Label" xml:space="preserve">
+    <value>Id Klien</value>
+  </data>
+  <data name="ClientName_Info" xml:space="preserve">
+    <value>Nama tampilan klien (digunakan untuk layar logging dan persetujuan)</value>
+  </data>
+  <data name="ClientName_Label" xml:space="preserve">
+    <value>Nama Klien</value>
+  </data>
+  <data name="ClientUri_Info" xml:space="preserve">
+    <value>URI untuk informasi lebih lanjut tentang klien (digunakan pada layar persetujuan)</value>
+  </data>
+  <data name="ClientUri_Label" xml:space="preserve">
+    <value>Klien Uri</value>
+  </data>
+  <data name="Enabled_Info" xml:space="preserve">
+    <value>Menentukan apakah klien diaktifkan. </value>
+  </data>
+  <data name="Enabled_Label" xml:space="preserve">
+    <value>Diaktifkan</value>
+  </data>
+  <data name="EnableLocalLogin_Info" xml:space="preserve">
+    <value>Menentukan apakah klien ini dapat menggunakan akun lokal atau IdP eksternal saja. </value>
+  </data>
+  <data name="EnableLocalLogin_Label" xml:space="preserve">
+    <value>Aktifkan Login Lokal</value>
+  </data>
+  <data name="IdentityTokenLifetime_Info" xml:space="preserve">
+    <value>Seumur hidup untuk token identitas dalam hitungan detik (defaultnya adalah 300 detik / 5 menit)</value>
+  </data>
+  <data name="IdentityTokenLifetime_Label" xml:space="preserve">
+    <value>Token Identitas Seumur Hidup</value>
+  </data>
+  <data name="IncludeJwtId_Info" xml:space="preserve">
+    <value>Menentukan apakah token akses JWT harus memiliki ID unik yang disematkan (melalui klaim jti).</value>
+  </data>
+  <data name="IncludeJwtId_Label" xml:space="preserve">
+    <value>Sertakan Id Jwt</value>
+  </data>
+  <data name="LogoUri_Info" xml:space="preserve">
+    <value>URI ke logo klien (digunakan pada layar persetujuan)</value>
+  </data>
+  <data name="LogoUri_Label" xml:space="preserve">
+    <value>Logo Uri</value>
+  </data>
+  <data name="RefreshTokenExpiration_Info" xml:space="preserve">
+    <value>Token penyegaran absolut akan kedaluwarsa pada titik waktu tertentu (ditentukan oleh AbsoluteRefreshTokenLifetime)
+
+</value>
+  </data>
+  <data name="RefreshTokenExpiration_Label" xml:space="preserve">
+    <value>Segarkan Kedaluwarsa Token</value>
+  </data>
+  <data name="RefreshTokenUsage.Info" xml:space="preserve">
+    <value>Penggunaan kembali pegangan token penyegaran akan tetap sama saat menyegarkan token
+
+</value>
+  </data>
+  <data name="RefreshTokenUsage.Label" xml:space="preserve">
+    <value>Segarkan Penggunaan Token</value>
+  </data>
+  <data name="RefreshTokenUsage_Info" xml:space="preserve">
+    <value>Penggunaan kembali pegangan token penyegaran akan tetap sama saat menyegarkan token
+
+</value>
+  </data>
+  <data name="RefreshTokenUsage_Label" xml:space="preserve">
+    <value>Segarkan Penggunaan Token</value>
+  </data>
+  <data name="RequireClientSecret_Info" xml:space="preserve">
+    <value>Menentukan apakah klien ini memerlukan rahasia untuk meminta token dari titik akhir token (defaultnya adalah true)</value>
+  </data>
+  <data name="RequireClientSecret_Label" xml:space="preserve">
+    <value>Memerlukan Rahasia Klien</value>
+  </data>
+  <data name="RequireConsent_Info" xml:space="preserve">
+    <value>Menentukan apakah layar persetujuan diperlukan. </value>
+  </data>
+  <data name="RequireConsent_Label" xml:space="preserve">
+    <value>Memerlukan Persetujuan</value>
+  </data>
+  <data name="RequirePkce_Info" xml:space="preserve">
+    <value>Menentukan apakah klien yang menggunakan jenis hibah berbasis kode otorisasi harus mengirimkan kunci bukti</value>
+  </data>
+  <data name="RequirePkce_Label" xml:space="preserve">
+    <value>Membutuhkan Pkce</value>
+  </data>
+  <data name="SlidingRefreshTokenLifetime_Info" xml:space="preserve">
+    <value>Menggeser token penyegaran seumur hidup dalam hitungan detik. </value>
+  </data>
+  <data name="SlidingRefreshTokenLifetime_Label" xml:space="preserve">
+    <value>Sliding Refresh Token Seumur Hidup</value>
+  </data>
+  <data name="UpdateAccessTokenClaimsOnRefresh_Info" xml:space="preserve">
+    <value>Mendapat atau menetapkan nilai yang menunjukkan apakah token akses (dan klaimnya) harus diperbarui pada permintaan token penyegaran.</value>
+  </data>
+  <data name="UpdateAccessTokenClaimsOnRefresh_Label" xml:space="preserve">
+    <value>Perbarui Klaim Token Akses Saat Penyegaran</value>
+  </data>
+  <data name="AllowedCorsOrigins_Info" xml:space="preserve">
+    <value>Jika ditentukan, akan digunakan oleh implementasi layanan kebijakan CORS default (In-Memory dan EF) untuk membuat kebijakan CORS untuk klien JavaScript.</value>
+  </data>
+  <data name="AllowedCorsOrigins_Label" xml:space="preserve">
+    <value>Asal Cors yang Diizinkan</value>
+  </data>
+  <data name="AllowedGrantTypes_Info" xml:space="preserve">
+    <value>Menentukan jenis hibah yang boleh digunakan klien. </value>
+  </data>
+  <data name="AllowedGrantTypes_Label" xml:space="preserve">
+    <value>Jenis Hibah yang Diizinkan</value>
+  </data>
+  <data name="AllowedScopes_Info" xml:space="preserve">
+    <value>Secara default, klien tidak memiliki akses ke sumber daya apa pun - tentukan sumber daya yang diizinkan dengan menambahkan nama cakupan yang sesuai</value>
+  </data>
+  <data name="AllowedScopes_Label" xml:space="preserve">
+    <value>Cakupan yang Diizinkan</value>
+  </data>
+  <data name="Claims_Info" xml:space="preserve">
+    <value>Mengizinkan klaim pengaturan untuk klien (akan disertakan dalam token akses).</value>
+  </data>
+  <data name="Claims_Label" xml:space="preserve">
+    <value>Klaim</value>
+  </data>
+  <data name="ClientSecrets_Info" xml:space="preserve">
+    <value>Daftar rahasia klien - kredensial untuk mengakses titik akhir token.</value>
+  </data>
+  <data name="ClientSecrets_Label" xml:space="preserve">
+    <value>Rahasia Klien</value>
+  </data>
+  <data name="IdentityProviderRestrictions_Info" xml:space="preserve">
+    <value>Menentukan IdP eksternal mana yang dapat digunakan dengan klien ini (jika daftar kosong, semua IdP diperbolehkan). </value>
+  </data>
+  <data name="IdentityProviderRestrictions_Label" xml:space="preserve">
+    <value>Batasan Penyedia Identitas</value>
+  </data>
+  <data name="PostLogoutRedirectUris_Info" xml:space="preserve">
+    <value>Menentukan URI yang diizinkan untuk dialihkan setelah logout</value>
+  </data>
+  <data name="PostLogoutRedirectUris_Label" xml:space="preserve">
+    <value>Posting Logout Redirect Uris</value>
+  </data>
+  <data name="RedirectUris_Info" xml:space="preserve">
+    <value>Menentukan URI yang diizinkan untuk mengembalikan token atau kode otorisasi</value>
+  </data>
+  <data name="RedirectUris_Label" xml:space="preserve">
+    <value>Arahkan ulang Uris</value>
+  </data>
+  <data name="Type_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Type_Label" xml:space="preserve">
+    <value>Jenis Klaim</value>
+  </data>
+  <data name="Value_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Value_Label" xml:space="preserve">
+    <value>Nilai Klaim</value>
+  </data>
+  <data name="SecretType_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SecretType_Label" xml:space="preserve">
+    <value>Tipe Rahasia</value>
+  </data>
+  <data name="SecretValue_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SecretValue_Label" xml:space="preserve">
+    <value>Nilai Rahasia</value>
+  </data>
+  <data name="HashType_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HashType_Label" xml:space="preserve">
+    <value>Jenis Hash</value>
+  </data>
+  <data name="RoleNormalizedName_Info" xml:space="preserve">
+    <value>Nama Peran yang Dinormalisasi</value>
+  </data>
+  <data name="RoleNormalizedName_Label" xml:space="preserve">
+    <value>Nama yang Dinormalisasi</value>
+  </data>
+  <data name="BackChannelLogoutSessionRequired_Info" xml:space="preserve">
+    <value>Menentukan apakah id sesi pengguna harus dikirim dalam permintaan ke BackChannelLogoutUri. </value>
+  </data>
+  <data name="BackChannelLogoutSessionRequired_Label" xml:space="preserve">
+    <value>Sesi Logout Saluran Belakang Diperlukan</value>
+  </data>
+  <data name="BackChannelLogoutUri_Info" xml:space="preserve">
+    <value>Menentukan URI logout di klien untuk logout saluran belakang berbasis HTTP. </value>
+  </data>
+  <data name="BackChannelLogoutUri_Label" xml:space="preserve">
+    <value>Uri Logout Saluran Belakang</value>
+  </data>
+  <data name="ClientClaimsPrefix_Info" xml:space="preserve">
+    <value>Jika disetel, jenis klaim klien awalan akan diawali. </value>
+  </data>
+  <data name="ClientClaimsPrefix_Label" xml:space="preserve">
+    <value>Awalan Klaim Klien</value>
+  </data>
+  <data name="Description_Info" xml:space="preserve">
+    <value>Deskripsi Klien</value>
+  </data>
+  <data name="Description_Label" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="FrontChannelLogoutSessionRequired_Info" xml:space="preserve">
+    <value>Menentukan apakah id sesi pengguna harus dikirim ke FrontChannelLogoutUri. </value>
+  </data>
+  <data name="FrontChannelLogoutSessionRequired_Label" xml:space="preserve">
+    <value>Sesi Logout Saluran Depan Diperlukan</value>
+  </data>
+  <data name="FrontChannelLogoutUri_Info" xml:space="preserve">
+    <value>Menentukan URI logout di klien untuk logout saluran depan berbasis HTTP. </value>
+  </data>
+  <data name="FrontChannelLogoutUri_Label" xml:space="preserve">
+    <value>Uri Keluar Saluran Depan</value>
+  </data>
+  <data name="PairWiseSubjectSalt_Info" xml:space="preserve">
+    <value>Nilai garam digunakan dalam pembuatan subjectId berpasangan untuk pengguna klien ini.</value>
+  </data>
+  <data name="PairWiseSubjectSalt_Label" xml:space="preserve">
+    <value>Pasangkan Garam Subjek yang Bijaksana</value>
+  </data>
+  <data name="Properties_Info" xml:space="preserve">
+    <value>Kamus untuk menyimpan nilai khusus klien apa pun sesuai kebutuhan.</value>
+  </data>
+  <data name="Properties_Label" xml:space="preserve">
+    <value>Properti</value>
+  </data>
+  <data name="PropertyKey_Info" xml:space="preserve">
+    <value>Kunci</value>
+  </data>
+  <data name="PropertyKey_Label" xml:space="preserve">
+    <value>Kunci</value>
+  </data>
+  <data name="PropertyValue_Info" xml:space="preserve">
+    <value>Nilai</value>
+  </data>
+  <data name="PropertyValue_Label" xml:space="preserve">
+    <value>Nilai</value>
+  </data>
+  <data name="ProtocolType_Info" xml:space="preserve">
+    <value>Standarnya adalah protokol OpenID Connect</value>
+  </data>
+  <data name="ProtocolType_Label" xml:space="preserve">
+    <value>Jenis Protokol</value>
+  </data>
+  <data name="UserSsoLifetime_Info" xml:space="preserve">
+    <value>Durasi maksimum (dalam detik) sejak terakhir kali pengguna mengautentikasi. </value>
+  </data>
+  <data name="UserSsoLifetime_Label" xml:space="preserve">
+    <value>Pengguna Sso Seumur Hidup</value>
+  </data>
+  <data name="DeviceCodeLifetime_Info" xml:space="preserve">
+    <value>Seumur hidup kode perangkat dalam hitungan detik (defaultnya adalah 300 detik / 5 menit)</value>
+  </data>
+  <data name="DeviceCodeLifetime_Label" xml:space="preserve">
+    <value>Kode Perangkat Seumur Hidup</value>
+  </data>
+  <data name="UserCodeType_Info" xml:space="preserve">
+    <value>Menentukan jenis kode pengguna yang akan digunakan untuk klien. </value>
+  </data>
+  <data name="UserCodeType_Label" xml:space="preserve">
+    <value>Jenis Kode Pengguna</value>
+  </data>
+  <data name="Expiration_Info" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Expiration_Label" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="SecretDescription_Info" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="SecretDescription_Label" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="RequireRequestObject_Label" xml:space="preserve">
+    <value>Memerlukan Objek Permintaan</value>
+  </data>
+  <data name="RequireRequestObject_Info" xml:space="preserve">
+    <value>Menentukan apakah klien ini perlu menggabungkan parameter permintaan otorisasi dalam JWT (defaultnya adalah false)</value>
+  </data>
+  <data name="SigningAlgorithms_Label" xml:space="preserve">
+    <value>Algoritma Penandatanganan Token Identitas yang Diizinkan</value>
+  </data>
+  <data name="SigningAlgorithms_Info" xml:space="preserve">
+    <value>Daftar algoritma penandatanganan yang diizinkan untuk token identitas. </value>
+  </data>
+</root>

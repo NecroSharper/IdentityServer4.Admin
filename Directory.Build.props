@@ -1,11 +1,11 @@
 <Project>
 
   <PropertyGroup>
-    <Version>2.1.0</Version>
-    <Authors>Jan Škoruba</Authors>
+    <Version>2.2.0</Version>
+    <Authors>NecroSharper</Authors>
     <LangVersion>latest</LangVersion>
     <PackageTags>IdentityServer4 Admin OpenIDConnect OAuth2 Identity</PackageTags>
-    <PackageProjectUrl>https://github.com/skoruba/IdentityServer4.Admin</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/NecroSharper/IdentityServer4.Admin</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>

@@ -1,139 +1,133 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Shared.DbContexts;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Shared.Entities.Identity;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Shared.Helpers;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+const string seedArgs = "/seed";
+const string migrateOnlyArgs = "/migrateonly";
 
-namespace Skoruba.IdentityServer4.Admin
+var builder = WebApplication.CreateBuilder(args.Where(x => x != seedArgs).ToArray());
+
+#region Config
+
+builder.Configuration.AddJsonFile("serilog.json", true, true);
+builder.Configuration.AddJsonFile($"serilog.{builder.Environment.EnvironmentName}.json", true, true);
+builder.Configuration.AddJsonFile("identitydata.json", true, true);
+builder.Configuration.AddJsonFile($"identitydata.{builder.Environment.EnvironmentName}.json", true, true);
+builder.Configuration.AddJsonFile("identityserverdata.json", true, true);
+builder.Configuration.AddJsonFile($"identityserverdata.{builder.Environment.EnvironmentName}.json", true, true);
+
+if (builder.Environment.IsDevelopment())
+    builder.Configuration.AddUserSecrets<Program>();
+
+builder.WebHost.ConfigureKestrel(options => { options.AddServerHeader = false; });
+
+#endregion
+
+Log.Logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(builder.Configuration)
+        .CreateLogger();
+
+try
 {
-	public class Program
+    builder.Configuration.AddAzureKeyVaultConfiguration(builder.Configuration);
+
+    builder.Configuration.AddEnvironmentVariables();
+    builder.Configuration.AddCommandLine(args);
+
+    #region AdminUI
+
+    JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+    builder.Services
+        .AddIdentityServer4AdminUI<AdminIdentityDbContext, IdentityServerConfigurationDbContext,
+            IdentityServerPersistedGrantDbContext,
+            AdminLogDbContext, AdminAuditLogDbContext, AuditLog, IdentityServerDataProtectionDbContext,
+            UserIdentity, UserIdentityRole, UserIdentityUserClaim, UserIdentityUserRole,
+            UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken, string,
+            IdentityUserDto, IdentityRoleDto, IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
+            IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
+            IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(options =>
+            {
+                // Applies configuration from appsettings.
+                options.BindConfiguration(builder.Configuration);
+
+                options.Security.UseDeveloperExceptionPage = builder.Environment.IsDevelopment();
+                options.Security.UseHsts = builder.Environment.IsDevelopment();
+
+                // Set migration assembly for application of db migrations
+                var migrationsAssembly =
+                    MigrationAssemblyConfiguration.GetMigrationAssemblyByProvider(options.DatabaseProvider);
+                options.DatabaseMigrations.SetMigrationsAssemblies(migrationsAssembly);
+
+                // Use production DbContexts and auth services.
+                options.Testing.IsStaging = false;
+            });
+
+    // Monitor changes in Admin UI views
+    builder.Services.AddAdminUIRazorRuntimeCompilation(builder.Environment);
+
+    // Add email senders which is currently setup for SendGrid and SMTP
+    builder.Services.AddEmailSenders(builder.Configuration);
+
+    #endregion
+
+    #region Serilog
+
+    builder.Services.AddSerilog((services, loggerConfig) => loggerConfig
+        .ReadFrom.Configuration(builder.Configuration)
+        .Enrich.WithProperty("ApplicationName", builder.Environment.ApplicationName));
+    builder.Host.UseSerilog();
+
+    #endregion
+
+    var app = builder.Build();
+
+    #region Migrations
+
+    var migrationComplete = await ApplyDbMigrationsWithDataSeedAsync(args, builder.Configuration, app.Services);
+    if (args.Any(x => x == migrateOnlyArgs))
     {
-        private const string SeedArgs = "/seed";
-        private const string MigrateOnlyArgs = "/migrateonly";
+        await app.StopAsync();
+        if (!migrationComplete) Environment.ExitCode = -1;
 
-        public static async Task Main(string[] args)
-        {
-            var configuration = GetConfiguration(args);
-
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
-
-            try
-            {
-                DockerHelpers.ApplyDockerConfiguration(configuration);
-
-                var host = CreateHostBuilder(args).Build();
-
-                var migrationComplete = await ApplyDbMigrationsWithDataSeedAsync(args, configuration, host);
-                if (args.Any(x => x == MigrateOnlyArgs))
-                {
-                    await host.StopAsync();
-                    if (!migrationComplete) {
-                        Environment.ExitCode = -1;
-                    }
-
-                    return;
-                }
-                await host.RunAsync();
-            }
-            catch (Exception ex)
-            {
-                Log.Fatal(ex, "Host terminated unexpectedly");
-            }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
-        }
-
-        private static async Task<bool> ApplyDbMigrationsWithDataSeedAsync(string[] args, IConfiguration configuration, IHost host)
-        {
-            var applyDbMigrationWithDataSeedFromProgramArguments = args.Any(x => x == SeedArgs);
-            if (applyDbMigrationWithDataSeedFromProgramArguments) args = args.Except(new[] { SeedArgs }).ToArray();
-
-            var seedConfiguration = configuration.GetSection(nameof(SeedConfiguration)).Get<SeedConfiguration>();
-            var databaseMigrationsConfiguration = configuration.GetSection(nameof(DatabaseMigrationsConfiguration))
-                .Get<DatabaseMigrationsConfiguration>();
-
-            return await DbMigrationHelpers
-                .ApplyDbMigrationsWithDataSeedAsync<IdentityServerConfigurationDbContext, AdminIdentityDbContext,
-                    IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext,
-                    IdentityServerDataProtectionDbContext, UserIdentity, UserIdentityRole>(host,
-                    applyDbMigrationWithDataSeedFromProgramArguments, seedConfiguration, databaseMigrationsConfiguration);
-        }
-
-        private static IConfiguration GetConfiguration(string[] args)
-        {
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var isDevelopment = environment == Environments.Development;
-
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
-                .AddJsonFile("serilog.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"serilog.{environment}.json", optional: true, reloadOnChange: true);
-
-            if (isDevelopment)
-            {
-                configurationBuilder.AddUserSecrets<Startup>(true);
-            }
-
-            var configuration = configurationBuilder.Build();
-
-            configuration.AddAzureKeyVaultConfiguration(configurationBuilder);
-
-            configurationBuilder.AddCommandLine(args);
-            configurationBuilder.AddEnvironmentVariables();
-
-            return configurationBuilder.Build();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                 .ConfigureAppConfiguration((hostContext, configApp) =>
-                 {
-                     var configurationRoot = configApp.Build();
-
-                     configApp.AddJsonFile("serilog.json", optional: true, reloadOnChange: true);
-                     configApp.AddJsonFile("identitydata.json", optional: true, reloadOnChange: true);
-                     configApp.AddJsonFile("identityserverdata.json", optional: true, reloadOnChange: true);
-
-                     var env = hostContext.HostingEnvironment;
-
-                     configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                     configApp.AddJsonFile($"identitydata.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                     configApp.AddJsonFile($"identityserverdata.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-
-                     if (env.IsDevelopment())
-                     {
-                         configApp.AddUserSecrets<Startup>(true);
-                     }
-
-                     configurationRoot.AddAzureKeyVaultConfiguration(configApp);
-
-                     configApp.AddEnvironmentVariables();
-                     configApp.AddCommandLine(args);
-                 })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.ConfigureKestrel(options => options.AddServerHeader = false);
-                    webBuilder.UseStartup<Startup>();
-                })
-                .UseSerilog((hostContext, loggerConfig) =>
-                {
-                    loggerConfig
-                        .ReadFrom.Configuration(hostContext.Configuration)
-                        .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
-                });
+        return;
     }
+
+    #endregion
+
+    #region Middleware
+
+    app.UseRouting();
+    app.UseIdentityServer4AdminUI();
+    app.MapIdentityServer4AdminUI();
+    app.MapIdentityServer4AdminUIHealthChecks();
+
+    #endregion
+
+    //https://github.com/skoruba/IdentityServer4.Admin/issues/996
+    //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+    await app.RunAsync();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    await Log.CloseAndFlushAsync();
+}
+
+return;
+
+static Task<bool> ApplyDbMigrationsWithDataSeedAsync(string[] args, IConfiguration configuration, IServiceProvider serviceProvider)
+{
+    var applyDbMigrationWithDataSeedFromProgramArguments = args.Any(x => x == seedArgs);
+    if (applyDbMigrationWithDataSeedFromProgramArguments) args = args.Except([seedArgs]).ToArray();
+
+    var seedConfiguration = configuration.GetSection(nameof(SeedConfiguration)).Get<SeedConfiguration>();
+    var databaseMigrationsConfiguration = configuration.GetSection(nameof(DatabaseMigrationsConfiguration))
+        .Get<DatabaseMigrationsConfiguration>();
+
+    return DbMigrationHelpers
+        .ApplyDbMigrationsWithDataSeedAsync<IdentityServerConfigurationDbContext, AdminIdentityDbContext,
+            IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext,
+            IdentityServerDataProtectionDbContext, UserIdentity, UserIdentityRole>(serviceProvider,
+            applyDbMigrationWithDataSeedFromProgramArguments, seedConfiguration, databaseMigrationsConfiguration);
 }

@@ -7,10 +7,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer4.Events;
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
+using IdentityServer10.Events;
+using IdentityServer10.Extensions;
+using IdentityServer10.Services;
+using IdentityServer10.Stores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Skoruba.IdentityServer4.STS.Identity.Helpers;

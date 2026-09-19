@@ -3,6 +3,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Skoruba.IdentityServer4.Admin.Api.Configuration.Test;
 
 namespace Skoruba.IdentityServer4.Admin.Api.IntegrationTests.Tests.Base
@@ -13,9 +14,11 @@ namespace Skoruba.IdentityServer4.Admin.Api.IntegrationTests.Tests.Base
 
         public HttpClient Client { get; }
 
+        private readonly IHost _host;
+
         public TestFixture()
         {
-            var builder = new WebHostBuilder()
+            _host = new HostBuilder()
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
                     configApp.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -26,16 +29,19 @@ namespace Skoruba.IdentityServer4.Admin.Api.IntegrationTests.Tests.Base
                     configApp.AddJsonFile($"serilog.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                     configApp.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                 })
-                .UseStartup<StartupTest>();
+                .ConfigureWebHostDefaults(webBuilder => webBuilder
+                    .UseTestServer()
+                    .UseStartup<StartupTest>())
+                .Start();
 
-            TestServer = new TestServer(builder);
+            TestServer = _host.GetTestServer();
             Client = TestServer.CreateClient();
         }
 
         public void Dispose()
         {
             Client.Dispose();
-            TestServer.Dispose();
+            _host.Dispose();
         }
     }
 }

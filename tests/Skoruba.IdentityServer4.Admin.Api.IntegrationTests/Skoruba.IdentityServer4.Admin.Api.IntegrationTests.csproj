@@ -2,23 +2,19 @@
 
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="coverlet.collector" Version="3.1.0">
+		<PackageReference Include="coverlet.collector" Version="10.0.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.12" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Skoruba.IdentityServer4.Admin.Api\Skoruba.IdentityServer4.Admin.Api.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Update="FluentAssertions" Version="6.4.0" />
 	</ItemGroup>
 
 </Project>

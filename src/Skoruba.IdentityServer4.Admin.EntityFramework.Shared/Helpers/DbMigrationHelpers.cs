@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.EntityFramework.Mappers;
-using IdentityServer4.Models;
+using IdentityServer10.EntityFramework.Mappers;
+using IdentityServer10.Models;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,7 @@ namespace Skoruba.IdentityServer4.Admin.EntityFramework.Shared.Helpers
         /// <param name="databaseMigrationsConfiguration"></param>
         public static async Task<bool> ApplyDbMigrationsWithDataSeedAsync<TIdentityServerDbContext, TIdentityDbContext,
             TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TDataProtectionDbContext, TUser, TRole>(
-            IHost host, bool applyDbMigrationWithDataSeedFromProgramArguments, SeedConfiguration seedConfiguration,
+            IServiceProvider host, bool applyDbMigrationWithDataSeedFromProgramArguments, SeedConfiguration seedConfiguration,
             DatabaseMigrationsConfiguration databaseMigrationsConfiguration)
             where TIdentityServerDbContext : DbContext, IAdminConfigurationDbContext
             where TIdentityDbContext : DbContext
@@ -40,7 +40,7 @@ namespace Skoruba.IdentityServer4.Admin.EntityFramework.Shared.Helpers
             where TRole : IdentityRole, new()
         {
             bool migrationComplete = false;
-            using (var serviceScope = host.Services.CreateScope())
+            using (var serviceScope = host.CreateScope())
             {
                 var services = serviceScope.ServiceProvider;
 

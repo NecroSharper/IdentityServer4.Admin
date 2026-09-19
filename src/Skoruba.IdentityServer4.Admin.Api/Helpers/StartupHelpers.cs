@@ -1,6 +1,6 @@
 ﻿using System;
 using IdentityModel;
-using IdentityServer4.EntityFramework.Options;
+using IdentityServer10.EntityFramework.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
@@ -280,7 +280,7 @@ namespace Skoruba.IdentityServer4.Admin.Api.Helpers
                 .AddDbContextCheck<TLogDbContext>("LogDbContext")
                 .AddDbContextCheck<TAuditLoggingDbContext>("AuditLogDbContext")
                 .AddDbContextCheck<TDataProtectionDbContext>("DataProtectionDbContext")
-                .AddIdentityServer(new Uri(identityServerUri), "Identity Server");
+                .AddOpenIdConnectServer(new Uri(identityServerUri), "Identity Server");
 
             var serviceProvider = services.BuildServiceProvider();
             var scopeFactory = serviceProvider.GetRequiredService<IServiceScopeFactory>();
@@ -348,7 +348,7 @@ namespace Skoruba.IdentityServer4.Admin.Api.Helpers
                 ForwardedHeaders = ForwardedHeaders.All
             };
 
-            forwardingOptions.KnownNetworks.Clear();
+            forwardingOptions.KnownIPNetworks.Clear();
             forwardingOptions.KnownProxies.Clear();
 
             app.UseForwardedHeaders(forwardingOptions);

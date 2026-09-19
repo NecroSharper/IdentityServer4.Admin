@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
-using IdentityServer4.EntityFramework.Entities;
+﻿using AutoMapper;
+using IdentityServer10.EntityFramework.Entities;
+using Microsoft.Extensions.Logging.Abstractions;
 using Skoruba.IdentityServer4.Admin.BusinessLogic.Dtos.Configuration;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Extensions.Common;
+using System.Collections.Generic;
 
 namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Mappers
 {
@@ -10,7 +11,7 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Mappers
     {
         static IdentityResourceMappers()
         {
-            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<IdentityResourceMapperProfile>())
+            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<IdentityResourceMapperProfile>(), NullLoggerFactory.Instance)
                 .CreateMapper();
         }
 

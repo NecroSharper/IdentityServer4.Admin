@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging.Abstractions;
 using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.IdentityServer4.Admin.BusinessLogic.Dtos.Log;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Entities;
@@ -12,7 +13,7 @@ namespace Skoruba.IdentityServer4.Admin.BusinessLogic.Mappers
 
         static LogMappers()
         {
-            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<LogMapperProfile>())
+            Mapper = new MapperConfiguration(cfg => cfg.AddProfile<LogMapperProfile>(), NullLoggerFactory.Instance)
                 .CreateMapper();
         }
 

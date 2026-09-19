@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using IdentityServer4.EntityFramework.Storage;
+using IdentityServer10.EntityFramework.Storage;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -19,7 +19,7 @@ using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
 using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
 using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
 using System.Linq;
-using IdentityServer4.Configuration;
+using IdentityServer10.Configuration;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Helpers;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
@@ -101,7 +101,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                 ForwardedHeaders = ForwardedHeaders.All
             };
 
-            forwardingOptions.KnownNetworks.Clear();
+            forwardingOptions.KnownIPNetworks.Clear();
             forwardingOptions.KnownProxies.Clear();
 
             app.UseForwardedHeaders(forwardingOptions);

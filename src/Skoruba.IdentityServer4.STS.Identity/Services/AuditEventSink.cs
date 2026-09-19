@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using IdentityServer4.Events;
-using IdentityServer4.Services;
+using IdentityServer10.Events;
+using IdentityServer10.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Skoruba.IdentityServer4.STS.Identity.Services
