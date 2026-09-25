@@ -1,0 +1,12 @@
+﻿@using System.Reflection
+@using NecroSharper.IdentityServer10.Admin
+@using NecroSharper.IdentityServer10.Admin.UI.Configuration
+
+@{
+    var runtimeVersion = typeof(AdminConfiguration)
+        .GetTypeInfo()
+        .Assembly
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+}
+
+@runtimeVersion

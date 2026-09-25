@@ -1,16 +1,16 @@
 param([string] $packagesVersions, [string]$gitBranchName = 'dev')
 
 # This script contains following steps:
-# - Download latest version of Skoruba.IdentityServer4.Admin from git repository
+# - Download latest version of NecroSharper.IdentityServer10.Admin from git repository
 # - Use folders src and tests for project template
 # - Create db migrations for seed data
 
-$gitProject = "https://github.com/skoruba/IdentityServer4.Admin"
-$gitProjectFolder = "Skoruba.IdentityServer4.Admin"
+$gitProject = "https://github.com/NecroSharper/IdentityServer4.Admin"
+$gitProjectFolder = "NecroSharper.IdentityServer10.Admin"
 $templateSrc = "template-build/content/src"
 $templateRoot = "template-build/content"
 $templateTests = "template-build/content/tests"
-$templateAdminProject = "template-build/content/src/Skoruba.IdentityServer4.Admin"
+$templateAdminProject = "template-build/content/src/NecroSharper.IdentityServer10.Admin"
 
 function CleanBinObjFolders { 
 
@@ -58,76 +58,76 @@ CleanBinObjFolders
 # Remove references
 
 # API
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Admin.Api/Skoruba.IdentityServer4.Admin.Api.csproj reference ..\Skoruba.IdentityServer4.Admin.BusinessLogic.Identity\Skoruba.IdentityServer4.Admin.BusinessLogic.Identity.csproj
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Admin.Api/Skoruba.IdentityServer4.Admin.Api.csproj reference ..\Skoruba.IdentityServer4.Admin.BusinessLogic\Skoruba.IdentityServer4.Admin.BusinessLogic.csproj
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Admin.Api/Skoruba.IdentityServer4.Admin.Api.csproj reference ..\Skoruba.IdentityServer4.Shared.Configuration\Skoruba.IdentityServer4.Shared.Configuration.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj reference ..\NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity\NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj reference ..\NecroSharper.IdentityServer10.Admin.BusinessLogic\NecroSharper.IdentityServer10.Admin.BusinessLogic.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj reference ..\NecroSharper.IdentityServer10.Shared.Configuration\NecroSharper.IdentityServer10.Shared.Configuration.csproj
 
 # Admin
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Admin/Skoruba.IdentityServer4.Admin.csproj reference ..\Skoruba.IdentityServer4.Admin.BusinessLogic\Skoruba.IdentityServer4.Admin.BusinessLogic.csproj
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Admin/Skoruba.IdentityServer4.Admin.csproj reference ..\Skoruba.IdentityServer4.Admin.UI\Skoruba.IdentityServer4.Admin.UI.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Admin/NecroSharper.IdentityServer10.Admin.csproj reference ..\NecroSharper.IdentityServer10.Admin.BusinessLogic\NecroSharper.IdentityServer10.Admin.BusinessLogic.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Admin/NecroSharper.IdentityServer10.Admin.csproj reference ..\NecroSharper.IdentityServer10.Admin.UI\NecroSharper.IdentityServer10.Admin.UI.csproj
 
 # STS
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj reference ..\Skoruba.IdentityServer4.Shared.Configuration\Skoruba.IdentityServer4.Shared.Configuration.csproj
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj reference ..\Skoruba.IdentityServer4.Admin.EntityFramework.Configuration\Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.STS.Identity/NecroSharper.IdentityServer10.STS.Identity.csproj reference ..\NecroSharper.IdentityServer10.Shared.Configuration\NecroSharper.IdentityServer10.Shared.Configuration.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.STS.Identity/NecroSharper.IdentityServer10.STS.Identity.csproj reference ..\NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration\NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration.csproj
 
 # EF Shared
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Admin.EntityFramework.Shared/Skoruba.IdentityServer4.Admin.EntityFramework.Shared.csproj reference ..\Skoruba.IdentityServer4.Admin.EntityFramework.Configuration\Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Admin.EntityFramework.Shared/NecroSharper.IdentityServer10.Admin.EntityFramework.Shared.csproj reference ..\NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration\NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration.csproj
 
 # Shared
-dotnet.exe remove ./$templateSrc/Skoruba.IdentityServer4.Shared/Skoruba.IdentityServer4.Shared.csproj reference ..\Skoruba.IdentityServer4.Admin.BusinessLogic.Identity\Skoruba.IdentityServer4.Admin.BusinessLogic.Identity.csproj
+dotnet.exe remove ./$templateSrc/NecroSharper.IdentityServer10.Shared/NecroSharper.IdentityServer10.Shared.csproj reference ..\NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity\NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity.csproj
 
 # Add nuget packages
 # Admin
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin/Skoruba.IdentityServer4.Admin.csproj package Skoruba.IdentityServer4.Admin.BusinessLogic -v $packagesVersions
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin/Skoruba.IdentityServer4.Admin.csproj package Skoruba.IdentityServer4.Admin.BusinessLogic.Identity -v $packagesVersions
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin/Skoruba.IdentityServer4.Admin.csproj package Skoruba.IdentityServer4.Admin.UI -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin/NecroSharper.IdentityServer10.Admin.csproj package NecroSharper.IdentityServer10.Admin.BusinessLogic -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin/NecroSharper.IdentityServer10.Admin.csproj package NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin/NecroSharper.IdentityServer10.Admin.csproj package NecroSharper.IdentityServer10.Admin.UI -v $packagesVersions
 
 # STS
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj package Skoruba.IdentityServer4.Shared.Configuration -v $packagesVersions
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj package Skoruba.IdentityServer4.Admin.EntityFramework.Configuration -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.STS.Identity/NecroSharper.IdentityServer10.STS.Identity.csproj package NecroSharper.IdentityServer10.Shared.Configuration -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.STS.Identity/NecroSharper.IdentityServer10.STS.Identity.csproj package NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration -v $packagesVersions
 
 # API
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin.Api/Skoruba.IdentityServer4.Admin.Api.csproj package Skoruba.IdentityServer4.Admin.BusinessLogic -v $packagesVersions
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin.Api/Skoruba.IdentityServer4.Admin.Api.csproj package Skoruba.IdentityServer4.Admin.BusinessLogic.Identity -v $packagesVersions
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin.Api/Skoruba.IdentityServer4.Admin.Api.csproj package Skoruba.IdentityServer4.Shared.Configuration -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj package NecroSharper.IdentityServer10.Admin.BusinessLogic -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj package NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj package NecroSharper.IdentityServer10.Shared.Configuration -v $packagesVersions
 
 # EF Shared
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Admin.EntityFramework.Shared/Skoruba.IdentityServer4.Admin.EntityFramework.Shared.csproj package Skoruba.IdentityServer4.Admin.EntityFramework.Configuration -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Admin.EntityFramework.Shared/NecroSharper.IdentityServer10.Admin.EntityFramework.Shared.csproj package NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration -v $packagesVersions
 
 # Shared
-dotnet.exe add ./$templateSrc/Skoruba.IdentityServer4.Shared/Skoruba.IdentityServer4.Shared.csproj package Skoruba.IdentityServer4.Admin.BusinessLogic.Identity -v $packagesVersions
+dotnet.exe add ./$templateSrc/NecroSharper.IdentityServer10.Shared/NecroSharper.IdentityServer10.Shared.csproj package NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity -v $packagesVersions
 
 # Clean solution and folders bin, obj
 CleanBinObjFolders
 
 # Clean up projects which will be installed via nuget packages
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.BusinessLogic -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.BusinessLogic.Identity -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.BusinessLogic.Shared -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.EntityFramework -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.EntityFramework.Identity -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.EntityFramework.Extensions -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.EntityFramework.Configuration -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Shared.Configuration -Force -recurse
-Remove-Item ./$templateSrc/Skoruba.IdentityServer4.Admin.UI -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.BusinessLogic -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.BusinessLogic.Shared -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.EntityFramework -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.EntityFramework.Identity -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.EntityFramework.Extensions -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Shared.Configuration -Force -recurse
+Remove-Item ./$templateSrc/NecroSharper.IdentityServer10.Admin.UI -Force -recurse
 Remove-Item ./$templateTests -Force -recurse
 
 ######################################
 # Step 2
-$templateNuspecPath = "template-build/Skoruba.IdentityServer4.Admin.Templates.nuspec"
+$templateNuspecPath = "template-build/NecroSharper.IdentityServer10.Admin.Templates.nuspec"
 nuget pack $templateNuspecPath -NoDefaultExcludes
 
 ######################################
 # Step 3
-$templateLocalName = "Skoruba.IdentityServer4.Admin.Templates.$packagesVersions.nupkg"
+$templateLocalName = "NecroSharper.IdentityServer10.Admin.Templates.$packagesVersions.nupkg"
 
-dotnet.exe new --uninstall Skoruba.IdentityServer4.Admin.Templates
+dotnet.exe new --uninstall NecroSharper.IdentityServer10.Admin.Templates
 dotnet.exe new -i $templateLocalName
 
 ######################################
 # Step 4
 # Create template for fixing project name
-dotnet new skoruba.is4admin --name SkorubaIdentityServer4Admin --title "Skoruba IdentityServer4 Admin" --adminrole SkorubaIdentityAdminAdministrator --adminclientid skoruba_identity_admin --adminclientsecret skoruba_admin_client_secret
+dotnet new necrosharper.is10admin --name NecroSharperIdentityServer10Admin --title "NecroSharper IdentityServer10 Admin" --adminrole SkorubaIdentityAdminAdministrator --adminclientid skoruba_identity_admin --adminclientsecret skoruba_admin_client_secret
 
 ######################################
 # Step 5
@@ -135,41 +135,41 @@ dotnet new skoruba.is4admin --name SkorubaIdentityServer4Admin --title "Skoruba 
 
 CleanBinObjFolders
 
-$templateFiles = Get-ChildItem .\SkorubaIdentityServer4Admin\src -include *.cs, *.csproj, *.cshtml -Recurse
+$templateFiles = Get-ChildItem .\NecroSharperIdentityServer10Admin\src -include *.cs, *.csproj, *.cshtml -Recurse
 foreach ($file in $templateFiles) {
     Write-Host $file.PSPath
 
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "SkorubaIdentityServer4Admin.Shared.Configuration", "Skoruba.IdentityServer4.Shared.Configuration" } |
+    Foreach-Object { $_ -replace "NecroSharperIdentityServer10Admin.Shared.Configuration", "NecroSharper.IdentityServer10.Shared.Configuration" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "SkorubaIdentityServer4Admin.Admin.UI", "Skoruba.IdentityServer4.Admin.UI" } |
+    Foreach-Object { $_ -replace "NecroSharperIdentityServer10Admin.Admin.UI", "NecroSharper.IdentityServer10.Admin.UI" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "SkorubaIdentityServer4Admin.Admin.BusinessLogic", "Skoruba.IdentityServer4.Admin.BusinessLogic" } |
+    Foreach-Object { $_ -replace "NecroSharperIdentityServer10Admin.Admin.BusinessLogic", "NecroSharper.IdentityServer10.Admin.BusinessLogic" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "SkorubaIdentityServer4Admin.Admin.EntityFramework", "Skoruba.IdentityServer4.Admin.EntityFramework" } |
+    Foreach-Object { $_ -replace "NecroSharperIdentityServer10Admin.Admin.EntityFramework", "NecroSharper.IdentityServer10.Admin.EntityFramework" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "Skoruba.IdentityServer4.Admin.EntityFramework.Shared", "SkorubaIdentityServer4Admin.Admin.EntityFramework.Shared" } |
+    Foreach-Object { $_ -replace "NecroSharper.IdentityServer10.Admin.EntityFramework.Shared", "NecroSharperIdentityServer10Admin.Admin.EntityFramework.Shared" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "Skoruba.IdentityServer4.Admin.EntityFramework.MySql", "SkorubaIdentityServer4Admin.Admin.EntityFramework.MySql" } |
+    Foreach-Object { $_ -replace "NecroSharper.IdentityServer10.Admin.EntityFramework.MySql", "NecroSharperIdentityServer10Admin.Admin.EntityFramework.MySql" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "Skoruba.IdentityServer4.Admin.EntityFramework.PostgreSQL", "SkorubaIdentityServer4Admin.Admin.EntityFramework.PostgreSQL" } |
+    Foreach-Object { $_ -replace "NecroSharper.IdentityServer10.Admin.EntityFramework.PostgreSQL", "NecroSharperIdentityServer10Admin.Admin.EntityFramework.PostgreSQL" } |
     Set-Content $file.PSPath -Encoding UTF8
 
     (Get-Content $file.PSPath -raw -Encoding UTF8) |
-    Foreach-Object { $_ -replace "Skoruba.IdentityServer4.Admin.EntityFramework.SqlServer", "SkorubaIdentityServer4Admin.Admin.EntityFramework.SqlServer" } |
+    Foreach-Object { $_ -replace "NecroSharper.IdentityServer10.Admin.EntityFramework.SqlServer", "NecroSharperIdentityServer10Admin.Admin.EntityFramework.SqlServer" } |
     Set-Content $file.PSPath -Encoding UTF8
 }
 

@@ -1,11 +1,11 @@
 param([string] $packagesVersions)
 
-$templateNuspecPath = "template-publish/Skoruba.IdentityServer4.Admin.Templates.nuspec"
+$templateNuspecPath = "template-publish/NecroSharper.IdentityServer10.Admin.Templates.nuspec"
 nuget pack $templateNuspecPath -NoDefaultExcludes
 
-dotnet.exe new --uninstall Skoruba.IdentityServer4.Admin.Templates
+dotnet.exe new --uninstall NecroSharper.IdentityServer10.Admin.Templates
 
-$templateLocalName = "Skoruba.IdentityServer4.Admin.Templates.$packagesVersions.nupkg"
+$templateLocalName = "NecroSharper.IdentityServer10.Admin.Templates.$packagesVersions.nupkg"
 dotnet.exe new -i $templateLocalName
 
-dotnet.exe new skoruba.is4admin --name MyProject --title MyProject --adminemail 'admin@skoruba.com' --adminpassword 'Pa$$word123' --adminrole MyRole --adminclientid MyClientId --adminclientsecret MyClientSecret --dockersupport true
+dotnet.exe new skoruba.is4admin --name MyProject --title MyProject --adminemail 'admin@necrosharper.com' --adminpassword 'Pa$$word123' --adminrole MyRole --adminclientid MyClientId --adminclientsecret MyClientSecret --dockersupport true
