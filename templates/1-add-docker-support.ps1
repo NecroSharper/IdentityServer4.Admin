@@ -1,6 +1,6 @@
 $templateRoot = "template-publish/content"
 $templateSrc = "template-publish/content/src"
-$temporaryProjectFolder = "SkorubaIdentityServer4Admin"
+$temporaryProjectFolder = "NecroSharperIdentityServer10Admin"
 $templateDockerFolder = "template-docker"
 
 # Remove original src folder for publish folder
@@ -20,6 +20,6 @@ Copy-Item ./$temporaryProjectFolder/Directory.Build.props $templateRoot -recurse
 Copy-Item ./$temporaryProjectFolder/LICENSE.md $templateRoot -recurse -force
 
 # Copy docker files for Admin, Api and STS
-Copy-Item ./$templateDockerFolder/SkorubaIdentityServer4Admin.Admin/* $templateSrc/SkorubaIdentityServer4Admin.Admin -recurse -force
-Copy-Item ./$templateDockerFolder/SkorubaIdentityServer4Admin.Admin.Api/* $templateSrc/SkorubaIdentityServer4Admin.Admin.Api -recurse -force
-Copy-Item ./$templateDockerFolder/SkorubaIdentityServer4Admin.STS.Identity/* $templateSrc/SkorubaIdentityServer4Admin.STS.Identity -recurse -force
+Copy-Item ./$templateDockerFolder/NecroSharperIdentityServer10Admin.Admin/* $templateSrc/NecroSharperIdentityServer10Admin.Admin -recurse -force
+Copy-Item ./$templateDockerFolder/NecroSharperIdentityServer10Admin.Admin.Api/* $templateSrc/NecroSharperIdentityServer10Admin.Admin.Api -recurse -force
+Copy-Item ./$templateDockerFolder/NecroSharperIdentityServer10Admin.STS.Identity/* $templateSrc/NecroSharperIdentityServer10Admin.STS.Identity -recurse -force

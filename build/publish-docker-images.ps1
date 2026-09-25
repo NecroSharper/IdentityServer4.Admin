@@ -6,11 +6,11 @@ Set-Location "../"
 docker-compose -f docker-compose.yml build
 
 # rename images with following tag
-docker tag skoruba-identityserver4-admin skoruba/identityserver4-admin:$version
-docker tag skoruba-identityserver4-sts-identity skoruba/identityserver4-sts-identity:$version
-docker tag skoruba-identityserver4-admin-api skoruba/identityserver4-admin-api:$version
+docker tag necrosharper-identityserver10-admin necrosharper/identityserver10-admin:$version
+docker tag necrosharper-identityserver10-sts-identity necrosharper/identityserver10-sts-identity:$version
+docker tag necrosharper-identityserver10-admin-api necrosharper/identityserver10-admin-api:$version
 
 # push to docker hub
-docker push skoruba/identityserver4-admin:$version
-docker push skoruba/identityserver4-admin-api:$version
-docker push skoruba/identityserver4-sts-identity:$version
+docker push necrosharper/identityserver10-admin:$version
+docker push necrosharper/identityserver10-admin-api:$version
+docker push necrosharper/identityserver10-sts-identity:$version

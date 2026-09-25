@@ -1,8 +1,8 @@
-![Logo](docs/Images/Skoruba.IdentityServer4.Admin-Logo-ReadMe.png)
+![Logo](package/icon.png)
 
-# Skoruba.IdentityServer4.Admin
+# NecroSharper.IdentityServer10.Admin fork of Skoruba.IdentityServer4.Admin
 
-> The administration for the IdentityServer4 and Asp.Net Core Identity
+> The administration for the IdentityServer and Asp.Net Core Identity
 
 ## Big Thanks 🙏🏻 and an Update on the Project ⚡️
 

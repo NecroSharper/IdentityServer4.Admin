@@ -1,0 +1,16 @@
+﻿global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using NecroSharper.IdentityServer10.Admin.EntityFramework.Shared.DbContexts;
+global using NecroSharper.IdentityServer10.Admin.EntityFramework.Shared.Entities.Identity;
+global using NecroSharper.IdentityServer10.STS.Identity;
+global using NecroSharper.IdentityServer10.STS.Identity.Configuration;
+global using NecroSharper.IdentityServer10.STS.Identity.Configuration.Constants;
+global using NecroSharper.IdentityServer10.STS.Identity.Configuration.Interfaces;
+global using NecroSharper.IdentityServer10.STS.Identity.Helpers;
+global using System;
+global using NecroSharper.IdentityServer10.Shared.Configuration.Helpers;

@@ -1,26 +1,26 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Jan Skoruba",
+  "author": "NecroSharper",
   "classifications": [
     "Web",
-    "IdentityServer4",
+    "IdentityServer10",
     "Admin"
   ],
-  "name": "Skoruba IdentityServer4 Admin",
-  "identity": "Skoruba.IdentityServer4.Admin",
-  "groupIdentity": "Skoruba.IdentityServer4.Admin",
-  "shortName": "skoruba.is4admin",
+  "name": "NecroSharper IdentityServer10 Admin",
+  "identity": "NecroSharper.IdentityServer10.Admin",
+  "groupIdentity": "NecroSharper.IdentityServer10.Admin",
+  "shortName": "necrosharper.is10admin",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "SkorubaIdentityServer4Admin",
+  "sourceName": "NecroSharperIdentityServer10Admin",
   "preferNameDirectory": true,
   "symbols": {
     "title": {
       "type": "parameter",
-      "defaultValue": "Skoruba IdentityServer4 Admin",
-      "replaces": "Skoruba IdentityServer4 Admin",
+      "defaultValue": "NecroSharper IdentityServer10 Admin",
+      "replaces": "NecroSharper IdentityServer10 Admin",
       "isRequired": true,
       "description": "The title and footer of the Admin UI"
     },
@@ -33,31 +33,31 @@
     },
     "adminemail": {
       "type": "parameter",
-      "defaultValue": "admin@skoruba.com",
-      "replaces": "admin@skoruba.com",
+      "defaultValue": "admin@necrosharper.com",
+      "replaces": "admin@necrosharper.com",
       "isRequired": true,
       "description": "The admin email."
     },
     "adminrole": {
       "type": "parameter",
-      "defaultValue": "SkorubaIdentityAdminAdministrator",
-      "replaces": "SkorubaIdentityAdminAdministrator",
+      "defaultValue": "NecroSharperIdentityAdminAdministrator",
+      "replaces": "NecroSharperIdentityAdminAdministrator",
       "isRequired": true,
       "description": "The name of admin role, that is used to authorize the administration (for example: MyAdminRole)."
     },
     "adminclientid": {
       "type": "parameter",
-      "defaultValue": "skoruba_identity_admin",
-      "replaces": "skoruba_identity_admin",
+      "defaultValue": "necrosharper_identity_admin",
+      "replaces": "necrosharper_identity_admin",
       "isRequired": true,
-      "description": "The name of client, that is used in the IdentityServer4"
+      "description": "The name of client, that is used in the IdentityServer10"
     },
     "adminclientsecret": {
       "type": "parameter",
-      "defaultValue": "skoruba_admin_client_secret",
-      "replaces": "skoruba_admin_client_secret",
+      "defaultValue": "necrosharper_admin_client_secret",
+      "replaces": "necrosharper_admin_client_secret",
       "isRequired": true,
-      "description": "The value of client secret, that is used in the IdentityServer4"
+      "description": "The value of client secret, that is used in the IdentityServer10"
     },
     "dockersupport": {
       "type": "parameter",
@@ -80,16 +80,16 @@
             "docker-compose.override.yml",
             "docker-compose.vs.debug.yml",
             "docker-compose.vs.release.yml",
-            "src/SkorubaIdentityServer4Admin.Admin/Dockerfile",
-            "src/SkorubaIdentityServer4Admin.Admin.Api/Dockerfile",
-            "src/SkorubaIdentityServer4Admin.STS.Identity/Dockerfile",
-            "SkorubaIdentityServer4Admin.AdminUI.sln"            
+            "src/NecroSharperIdentityServer10Admin.Admin/Dockerfile",
+            "src/NecroSharperIdentityServer10Admin.Admin.Api/Dockerfile",
+            "src/NecroSharperIdentityServer10Admin.STS.Identity/Dockerfile",
+            "NecroSharperIdentityServer10Admin.AdminUI.sln"            
           ]
         },
         {
           "condition": "(dockersupport)",
           "exclude": [
-            "SkorubaIdentityServer4Admin.Admin.sln"
+            "NecroSharperIdentityServer10Admin.Admin.sln"
           ]
         }
       ]
@@ -97,28 +97,28 @@
   ],
   "primaryOutputs": [
     {
-      "path": "src/SkorubaIdentityServer4Admin.Admin/SkorubaIdentityServer4Admin.Admin.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Admin/NecroSharperIdentityServer10Admin.Admin.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.STS.Identity/SkorubaIdentityServer4Admin.STS.Identity.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.STS.Identity/NecroSharperIdentityServer10Admin.STS.Identity.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.Admin.Api/SkorubaIdentityServer4Admin.Admin.Api.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Admin.Api/NecroSharperIdentityServer10Admin.Admin.Api.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.Admin.EntityFramework.Shared/SkorubaIdentityServer4Admin.Admin.EntityFramework.Shared.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Admin.EntityFramework.Shared/NecroSharperIdentityServer10Admin.Admin.EntityFramework.Shared.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.Admin.EntityFramework.MySql/SkorubaIdentityServer4Admin.Admin.EntityFramework.MySql.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Admin.EntityFramework.MySql/NecroSharperIdentityServer10Admin.Admin.EntityFramework.MySql.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.Admin.EntityFramework.PostgreSQL/SkorubaIdentityServer4Admin.Admin.EntityFramework.PostgreSQL.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Admin.EntityFramework.PostgreSQL/NecroSharperIdentityServer10Admin.Admin.EntityFramework.PostgreSQL.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.Admin.EntityFramework.SqlServer/SkorubaIdentityServer4Admin.Admin.EntityFramework.SqlServer.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Admin.EntityFramework.SqlServer/NecroSharperIdentityServer10Admin.Admin.EntityFramework.SqlServer.csproj"
     },
     {
-      "path": "src/SkorubaIdentityServer4Admin.Shared/SkorubaIdentityServer4Admin.Shared.csproj"
+      "path": "src/NecroSharperIdentityServer10Admin.Shared/NecroSharperIdentityServer10Admin.Shared.csproj"
     }
   ],
   "postActions": [

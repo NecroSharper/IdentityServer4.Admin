@@ -1,0 +1,35 @@
+﻿using AutoMapper;
+using IdentityServer10.EntityFramework.Entities;
+using Microsoft.Extensions.Logging.Abstractions;
+using NecroSharper.IdentityServer10.Admin.BusinessLogic.Dtos.Grant;
+using NecroSharper.IdentityServer10.Admin.EntityFramework.Entities;
+using NecroSharper.IdentityServer10.Admin.EntityFramework.Extensions.Common;
+
+namespace NecroSharper.IdentityServer10.Admin.BusinessLogic.Mappers
+{
+    public static class PersistedGrantMappers
+    {
+        static PersistedGrantMappers()
+        {
+            Mapper = new MapperConfiguration(cfg =>cfg.AddProfile<PersistedGrantMapperProfile>(), NullLoggerFactory.Instance)
+                .CreateMapper();
+        }
+
+        internal static IMapper Mapper { get; }
+
+        public static PersistedGrantsDto ToModel(this PagedList<PersistedGrantDataView> grant)
+        {
+            return grant == null ? null : Mapper.Map<PersistedGrantsDto>(grant);
+        }
+
+        public static PersistedGrantsDto ToModel(this PagedList<PersistedGrant> grant)
+        {
+            return grant == null ? null : Mapper.Map<PersistedGrantsDto>(grant);
+        }
+
+        public static PersistedGrantDto ToModel(this PersistedGrant grant)
+        {
+            return grant == null ? null : Mapper.Map<PersistedGrantDto>(grant);
+        }
+    }
+}

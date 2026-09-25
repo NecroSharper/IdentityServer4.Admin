@@ -1,0 +1,18 @@
+﻿@using System.Reflection
+@using NecroSharperIdentityServer10Admin.STS.Identity
+
+@{
+    var runtimeVersion = typeof(Program)
+        .GetTypeInfo()
+        .Assembly
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+}
+
+@runtimeVersion
+
+
+
+
+
+
+

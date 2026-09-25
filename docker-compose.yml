@@ -18,12 +18,12 @@ services:
           - admin.skoruba.local
           - admin-api.skoruba.local
     restart: always
-  skoruba.identityserver4.admin:
-    image: '${DOCKER_REGISTRY-}skoruba-identityserver4-admin'
+  necrosharper.identityserver10.admin:
+    image: '${DOCKER_REGISTRY-}necrosharper-identityserver10-admin'
     build:
       context: .
-      dockerfile: src/Skoruba.IdentityServer4.Admin/Dockerfile
-    container_name: skoruba-identityserver4-admin
+      dockerfile: src/NecroSharper.IdentityServer10.Admin/Dockerfile
+    container_name: necrosharper-identityserver10-admin
     environment:
       - VIRTUAL_HOST=admin.skoruba.local
       - 'ConnectionStrings__ConfigurationDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
@@ -45,10 +45,10 @@ services:
       - 'Serilog__WriteTo__1__Args__connectionString=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
-    command: dotnet Skoruba.IdentityServer4.Admin.dll /seed
+    command: dotnet NecroSharper.IdentityServer10.Admin.dll /seed
     depends_on:
       - db
-      - skoruba.identityserver4.sts.identity
+      - necrosharper.identityserver10.sts.identity
     volumes:
       - './shared/serilog.json:/app/serilog.json'
       - './shared/identitydata.json:/app/identitydata.json'
@@ -56,12 +56,12 @@ services:
       - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
     networks:
       identityserverui: null
-  skoruba.identityserver4.admin.api:
-    image: '${DOCKER_REGISTRY-}skoruba-identityserver4-admin-api'
+  necrosharper.identityserver10.admin.api:
+    image: '${DOCKER_REGISTRY-}necrosharper-identityserver10-admin-api'
     build:
       context: .
-      dockerfile: src/Skoruba.IdentityServer4.Admin.Api/Dockerfile
-    container_name: skoruba-identityserver4-admin-api
+      dockerfile: src/NecroSharper.IdentityServer10.Admin.Api/Dockerfile
+    container_name: necrosharper-identityserver10-admin-api
     environment:
       - VIRTUAL_HOST=admin-api.skoruba.local
       - AdminApiConfiguration__RequireHttpsMetadata=false
@@ -80,12 +80,12 @@ services:
       - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
     networks:
       identityserverui: null
-  skoruba.identityserver4.sts.identity:
-    image: '${DOCKER_REGISTRY-}skoruba-identityserver4-sts-identity'
+  necrosharper.identityserver10.sts.identity:
+    image: '${DOCKER_REGISTRY-}necrosharper-identityserver10-sts-identity'
     build:
       context: .
-      dockerfile: src/Skoruba.IdentityServer4.STS.Identity/Dockerfile
-    container_name: skoruba-identityserver4-sts-identity
+      dockerfile: src/NecroSharper.IdentityServer10.STS.Identity/Dockerfile
+    container_name: necrosharper-identityserver10-sts-identity
     environment:
       - VIRTUAL_HOST=sts.skoruba.local
       - 'ConnectionStrings__ConfigurationDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
@@ -113,7 +113,7 @@ services:
     image: 'mcr.microsoft.com/mssql/server:2017-CU20-ubuntu-16.04'
     ports:
       - '7900:1433'
-    container_name: skoruba-identityserver4-db
+    container_name: necrosharper-identityserver10-db
     environment:
       SA_PASSWORD: '${DB_PASSWORD:-Password_123}'
       ACCEPT_EULA: 'Y'

@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/admin/">
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.Api/NecroSharper.IdentityServer10.Admin.Api.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.UI/NecroSharper.IdentityServer10.Admin.UI.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin/NecroSharper.IdentityServer10.Admin.csproj" />
+  </Folder>
+  <Folder Name="/business/">
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity/NecroSharper.IdentityServer10.Admin.BusinessLogic.Identity.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.BusinessLogic.Shared/NecroSharper.IdentityServer10.Admin.BusinessLogic.Shared.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.BusinessLogic/NecroSharper.IdentityServer10.Admin.BusinessLogic.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Shared.Configuration/NecroSharper.IdentityServer10.Shared.Configuration.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Shared/NecroSharper.IdentityServer10.Shared.csproj" />
+  </Folder>
+  <Folder Name="/database/">
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration/NecroSharper.IdentityServer10.Admin.EntityFramework.Configuration.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.Extensions/NecroSharper.IdentityServer10.Admin.EntityFramework.Extensions.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.Identity/NecroSharper.IdentityServer10.Admin.EntityFramework.Identity.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.MySql/NecroSharper.IdentityServer10.Admin.EntityFramework.MySql.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.PostgreSQL/NecroSharper.IdentityServer10.Admin.EntityFramework.PostgreSQL.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.Shared/NecroSharper.IdentityServer10.Admin.EntityFramework.Shared.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework.SqlServer/NecroSharper.IdentityServer10.Admin.EntityFramework.SqlServer.csproj" />
+    <Project Path="src/NecroSharper.IdentityServer10.Admin.EntityFramework/NecroSharper.IdentityServer10.Admin.EntityFramework.csproj" />
+  </Folder>
+  <Folder Name="/sts/">
+    <Project Path="src/NecroSharper.IdentityServer10.STS.Identity/NecroSharper.IdentityServer10.STS.Identity.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NecroSharper.IdentityServer10.Admin.Api.IntegrationTests/NecroSharper.IdentityServer10.Admin.Api.IntegrationTests.csproj" />
+    <Project Path="tests/NecroSharper.IdentityServer10.Admin.IntegrationTests/NecroSharper.IdentityServer10.Admin.IntegrationTests.csproj" />
+    <Project Path="tests/NecroSharper.IdentityServer10.Admin.UnitTests/NecroSharper.IdentityServer10.Admin.UnitTests.csproj" />
+    <Project Path="tests/NecroSharper.IdentityServer10.STS.Identity.IntegrationTests/NecroSharper.IdentityServer10.STS.Identity.IntegrationTests.csproj" />
+  </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+</Solution>

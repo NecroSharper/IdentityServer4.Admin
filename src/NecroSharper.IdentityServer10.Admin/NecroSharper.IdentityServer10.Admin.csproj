@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	  <TargetFramework>net10.0</TargetFramework>
+	  <UserSecretsId>8fe260ca-ef4c-4fa3-9364-029146f8d339</UserSecretsId>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetDiag.HealthChecks.UI" Version="10.0.14" />
+    <PackageReference Include="OmarBaruzzo.IdentityServer10.EntityFramework" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
+    <PackageReference Include="Serilog" Version="4.4.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="10.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="9.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Admin.BusinessLogic\NecroSharper.IdentityServer10.Admin.BusinessLogic.csproj" />
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Admin.EntityFramework.MySql\NecroSharper.IdentityServer10.Admin.EntityFramework.MySql.csproj" />
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Admin.EntityFramework.PostgreSQL\NecroSharper.IdentityServer10.Admin.EntityFramework.PostgreSQL.csproj" />
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Admin.EntityFramework.SqlServer\NecroSharper.IdentityServer10.Admin.EntityFramework.SqlServer.csproj" />
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Admin.UI\NecroSharper.IdentityServer10.Admin.UI.csproj" />
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Shared\NecroSharper.IdentityServer10.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\Test\" />
+    <Folder Include="log\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+</Project>

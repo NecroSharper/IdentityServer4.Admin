@@ -1,19 +1,19 @@
 version: '3.4'
 
 services:
-  skorubaidentityserver4admin.admin:
+  necrosharperidentityserver10admin.admin:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
   
-  skorubaidentityserver4admin.admin.api:
+  necrosharperidentityserver10admin.admin.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  skorubaidentityserver4admin.sts.identity:
+  necrosharperidentityserver10admin.sts.identity:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:

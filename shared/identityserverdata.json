@@ -63,8 +63,8 @@
         ],
         "ApiScopes": [
             {
-                "Name": "skoruba_identity_admin_api",
-                "DisplayName": "skoruba_identity_admin_api",
+                "Name": "necrosharper_identity_admin_api",
+                "DisplayName": "necrosharper_identity_admin_api",
                 "Required": true,
                 "UserClaims": [
                     "role",
@@ -74,16 +74,16 @@
         ],
         "ApiResources": [
             {
-                "Name": "skoruba_identity_admin_api",
+                "Name": "necrosharper_identity_admin_api",
                 "Scopes": [
-                    "skoruba_identity_admin_api"
+                    "necrosharper_identity_admin_api"
                 ]
             }
         ],
         "Clients": [
             {
-                "ClientId": "skoruba_identity_admin",
-                "ClientName": "skoruba_identity_admin",
+                "ClientId": "necrosharper_identity_admin",
+                "ClientName": "necrosharper_identity_admin",
                 "ClientUri": "https://admin.skoruba.local",
                 "AllowedGrantTypes": [
                     "authorization_code"
@@ -91,7 +91,7 @@
                 "RequirePkce": true,
                 "ClientSecrets": [
                     {
-                        "Value": "skoruba_admin_client_secret"
+                        "Value": "necrosharper_admin_client_secret"
                     }
                 ],
                 "RedirectUris": [
@@ -112,8 +112,8 @@
                 ]
             },
             {
-                "ClientId": "skoruba_identity_admin_api_swaggerui",
-                "ClientName": "skoruba_identity_admin_api_swaggerui",
+                "ClientId": "necrosharper_identity_admin_api_swaggerui",
+                "ClientName": "necrosharper_identity_admin_api_swaggerui",
                 "AllowedGrantTypes": [
                     "authorization_code"
                 ],
@@ -123,7 +123,7 @@
                     "https://admin-api.skoruba.local/swagger/oauth2-redirect.html"
                 ],
                 "AllowedScopes": [
-                    "skoruba_identity_admin_api"
+                    "necrosharper_identity_admin_api"
                 ],
                 "AllowedCorsOrigins": [
                     "https://admin-api.skoruba.local"

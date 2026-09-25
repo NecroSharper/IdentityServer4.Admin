@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net10.0</TargetFramework>
+	  <Description>Entity Framework configuration for the administration of the IdentityServer4 and Asp.Net Core Identity</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+    <PackageReference Include="Skoruba.AuditLogging.EntityFramework" Version="3.0.0" />
+    <PackageReference Include="Microting.EntityFrameworkCore.MySql" Version="10.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NecroSharper.IdentityServer10.Admin.EntityFramework.Identity\NecroSharper.IdentityServer10.Admin.EntityFramework.Identity.csproj" />
+  </ItemGroup>
+
+</Project>
